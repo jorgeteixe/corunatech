@@ -49,11 +49,11 @@ body:
     id: socials
     attributes:
       label: Redes sociais
-      description: Lista as redes sociais no formato "Nome: URL" (unha por liña)
+      description: Lista as redes sociais no formato "Nome - URL" (unha por liña)
       placeholder: |
-        Twitter: https://twitter.com/comunidade
-        GitHub: https://github.com/comunidade
-        LinkedIn: https://linkedin.com/company/comunidade
+        Twitter - https://twitter.com/comunidade
+        GitHub - https://github.com/comunidade
+        LinkedIn - https://linkedin.com/company/comunidade
     validations:
       required: false
 

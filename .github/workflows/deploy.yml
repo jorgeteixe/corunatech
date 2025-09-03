@@ -1,10 +1,16 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
+  # Trigger the workflow only when relevant files change
   push:
     branches: [main]
+    paths:
+      - 'public/**'
+      - 'src/**'
+      - 'astro.config.mjs'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
