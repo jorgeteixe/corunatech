@@ -2,7 +2,7 @@ name: Add Event
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited, labeled, reopened]
 
 jobs:
   process-event:
@@ -12,7 +12,7 @@ jobs:
       issues: write
       contents: write
       pull-requests: write
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -54,7 +54,7 @@ jobs:
               issue_number: context.issue.number,
               body: `❌ **Evento xa existe**\n\nXa existe un evento co slug \`${{ steps.process.outputs.slug }}\`. Por favor verifica se xa está rexistrado ou cambia o título/data.`
             });
-            
+
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -67,14 +67,14 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
+
           # Create branch
           BRANCH="add-event-${{ steps.process.outputs.slug }}"
           git checkout -b "$BRANCH"
-          
+
           # Create event file
           echo "${{ steps.process.outputs.yaml_content }}" > "src/content/events/${{ steps.process.outputs.slug }}.yaml"
-          
+
           # Commit changes
           git add "src/content/events/${{ steps.process.outputs.slug }}.yaml"
           git commit -m "feat: engade evento ${{ steps.process.outputs.title }}
@@ -84,10 +84,10 @@ jobs:
           - Data: ${{ steps.process.outputs.date }}
           - Ficheiro: src/content/events/${{ steps.process.outputs.slug }}.yaml
           - Closes #${{ github.event.issue.number }}"
-          
+
           # Push branch
           git push origin "$BRANCH"
-          
+
           echo "BRANCH=$BRANCH" >> $GITHUB_ENV
 
       - name: Create Pull Request
