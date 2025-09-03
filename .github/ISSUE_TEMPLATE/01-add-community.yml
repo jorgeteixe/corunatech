@@ -122,7 +122,7 @@ body:
           required: true
         - label: Se inclúo sitio web, empeza por https://
           required: false
-        - label: Se inclúo redes sociais, están no formato "Nome: URL"
+        - label: Se inclúo redes sociais, están no formato "Nome - URL"
           required: false
         - label: Se inclúo email, ten formato válido
           required: false
