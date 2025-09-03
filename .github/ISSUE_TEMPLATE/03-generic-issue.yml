@@ -1,0 +1,19 @@
+name: Reporte de Problema
+description: Reporta un problema técnico ou erro coa web de CoruñaTech
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazas por reportar un problema! 
+        Isto axúdanos a mellorar CoruñaTech para toda a comunidade.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrición do problema
+      description: Describe o problema en detalle
+      placeholder: "Que estaba a facer cando se produciu o erro? Que esperaba que pasase? Que pasou no seu lugar?"
+    validations:
+      required: true

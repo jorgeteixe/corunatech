@@ -1,8 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Comunidade CoruñaTech
-    url: https://github.com/corunatech/community/discussions
-    about: Únete ás discusións da comunidade CoruñaTech
-  - name: Reportar erro na web
-    url: https://github.com/jorgeteixe/corunatech/issues/new
-    about: Reporta problemas técnicos coa web de CoruñaTech
+  - name: Páxina Web CoruñaTech
+    url: https://jorgeteixe.github.io/corunatech
+    about: Visita a páxina principal de CoruñaTech

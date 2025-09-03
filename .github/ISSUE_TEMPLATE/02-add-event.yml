@@ -1,7 +1,7 @@
 name: Engadir Evento
 description: Engade un novo evento das comunidades tecnolóxicas de CoruñaTech
 title: "[EVENT] Novo evento: "
-labels: ["event", "enhancement"]
+labels: ["add-event"]
 body:
   - type: markdown
     attributes:
@@ -84,32 +84,3 @@ body:
       placeholder: "python, web, taller, principiantes"
     validations:
       required: true
-
-  - type: textarea
-    id: additional
-    attributes:
-      label: Información adicional
-      description: Calquer información adicional sobre o evento
-    validations:
-      required: false
-
-  - type: checkboxes
-    id: automation-check
-    attributes:
-      label: Checklist para automatización
-      description: Verifica que toda a información está correcta
-      options:
-        - label: O título do evento está especificado
-          required: true
-        - label: A descrición está en galego e ten menos de 300 caracteres
-          required: true
-        - label: A data está en formato ISO 8601 (YYYY-MM-DDTHH:MM:SSZ)
-          required: true
-        - label: Seleccionei a comunidade organizadora correcta
-          required: true
-        - label: As etiquetas están separadas por comas (mínimo 2)
-          required: true
-        - label: Se inclúo enlace de inscrición, empeza por https://
-          required: false
-        - label: Se inclúo duración, usa formato válido (Xh, XXmin)
-          required: false

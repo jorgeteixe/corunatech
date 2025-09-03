@@ -1,7 +1,7 @@
 name: Engadir Comunidade
 description: Engade unha nova comunidade tecnolóxica á plataforma CoruñaTech
 title: "[COMMUNITY] Nova comunidade: "
-labels: ["community", "enhancement"]
+labels: ["add-community"]
 body:
   - type: markdown
     attributes:
@@ -99,30 +99,3 @@ body:
       placeholder: "contacto@comunidade.gal"
     validations:
       required: false
-
-  - type: textarea
-    id: additional
-    attributes:
-      label: Información adicional
-      description: Calquer información adicional sobre a comunidade
-    validations:
-      required: false
-
-  - type: checkboxes
-    id: automation-check
-    attributes:
-      label: Checklist para automatización
-      description: Verifica que toda a información está correcta
-      options:
-        - label: O nome da comunidade está especificado
-          required: true
-        - label: A descrición está en galego e ten menos de 200 caracteres
-          required: true
-        - label: As etiquetas están separadas por comas (mínimo 3)
-          required: true
-        - label: Se inclúo sitio web, empeza por https://
-          required: false
-        - label: Se inclúo redes sociais, están no formato "Nome - URL"
-          required: false
-        - label: Se inclúo email, ten formato válido
-          required: false
