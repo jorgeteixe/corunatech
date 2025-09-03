@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import corunaTechLogo from "../assets/logo.png";
+---
+
+<section class="py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="mb-8">
+      <Image
+        src={corunaTechLogo}
+        alt="Coruna Tech Logo"
+        height={150}
+        class="mx-auto"
+      />
+      <p class="mt-2 text-xl text-gray-300 max-w-3xl mx-auto">
+        O punto de encontro de todas as comunidades tecnolóxicas da Coruña.
+        Conectamos desenvolvedores, deseñadores e profesionais tech de Galicia.
+      </p>
+    </div>
+  </div>
+</section>

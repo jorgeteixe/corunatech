@@ -1,40 +1,15 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import Hero from "../components/Hero.astro";
 import Communities from "../components/Communities.astro";
 import Events from "../components/Events.astro";
-import { getCollection } from "astro:content";
-
-// Get all events
-const allEvents = await getCollection("events");
-
-// Current date for comparison (build time)
-const now = new Date();
-
-// Filter events into future and past
-const futureEvents = allEvents
-  .filter((event) => event.data.date >= now)
-  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
-
-const pastEvents = allEvents
-  .filter((event) => event.data.date < now)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <PageLayout
   title="CoruñaTech - A Meta Comunidade Tecnolóxica da Coruña"
   description="O punto de encontro de todas as comunidades tecnolóxicas da Coruña. Conectamos desenvolvedores, deseñadores e profesionais tech de Galicia."
 >
-  <Events
-    title="Próximos Eventos"
-    events={futureEvents}
-    emptyMessage="Non hai eventos próximos programados."
-  />
-
+  <Hero />
   <Communities />
-
-  <Events
-    title="Eventos Pasados"
-    events={pastEvents}
-    emptyMessage="Non hai eventos pasados rexistrados."
-  />
+  <Events />
 </PageLayout>
