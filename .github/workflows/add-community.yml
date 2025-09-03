@@ -23,9 +23,11 @@ jobs:
         with:
           template-path: .github/ISSUE_TEMPLATE/01-add-community.yml
 
+      - run: ls -R .github/scripts
+
       - name: Validate and process community
         id: process
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         env:
           PARSED_ISSUE: ${{ steps.issue-parser.outputs.jsonString }}
         with:
