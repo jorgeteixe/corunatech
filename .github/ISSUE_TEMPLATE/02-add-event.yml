@@ -1,0 +1,115 @@
+name: Engadir Evento
+description: Engade un novo evento das comunidades tecnolóxicas de CoruñaTech
+title: "[EVENT] Novo evento: "
+labels: ["event", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazas por engadir un novo evento a CoruñaTech! 
+        Por favor completa toda a información necesaria para crear o evento.
+
+  - type: input
+    id: title
+    attributes:
+      label: Título do evento
+      description: Título completo do evento
+      placeholder: "Exemplo: Meetup Mensual Python - Introdución a FastAPI"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrición
+      description: Descrición do evento en galego (máximo 300 caracteres)
+      placeholder: "Exemplo: Charla sobre FastAPI para crear APIs modernas con Python..."
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Data e hora
+      description: Data e hora en formato ISO 8601 (YYYY-MM-DDTHH:MM:SSZ)
+      placeholder: "2025-09-15T19:00:00Z"
+    validations:
+      required: true
+
+  - type: input
+    id: duration
+    attributes:
+      label: Duración
+      description: Duración do evento (opcional) - formato Xh ou XXmin
+      placeholder: "2h, 90min, 1h30min"
+    validations:
+      required: false
+
+  - type: input
+    id: location
+    attributes:
+      label: Localización
+      description: Nome do lugar onde se celebra o evento (opcional)
+      placeholder: "Coworking A Coruña, Facultade de Informática UDC"
+    validations:
+      required: false
+
+  - type: input
+    id: rsvp
+    attributes:
+      label: Enlace de inscrición
+      description: URL completa para apuntarse ao evento (opcional)
+      placeholder: "https://www.meetup.com/comunidade/events/123456/"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: community
+    attributes:
+      label: Comunidade organizadora
+      description: Selecciona a comunidade que organiza o evento
+      options:
+        - gpul
+        - python-coruna
+        - coruna-wtf
+      default: 0
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Etiquetas
+      description: Lista de etiquetas separadas por comas (mínimo 2)
+      placeholder: "python, web, taller, principiantes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Información adicional
+      description: Calquer información adicional sobre o evento
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: automation-check
+    attributes:
+      label: Checklist para automatización
+      description: Verifica que toda a información está correcta
+      options:
+        - label: O título do evento está especificado
+          required: true
+        - label: A descrición está en galego e ten menos de 300 caracteres
+          required: true
+        - label: A data está en formato ISO 8601 (YYYY-MM-DDTHH:MM:SSZ)
+          required: true
+        - label: Seleccionei a comunidade organizadora correcta
+          required: true
+        - label: As etiquetas están separadas por comas (mínimo 2)
+          required: true
+        - label: Se inclúo enlace de inscrición, empeza por https://
+          required: false
+        - label: Se inclúo duración, usa formato válido (Xh, XXmin)
+          required: false

@@ -1,0 +1,128 @@
+name: Engadir Comunidade
+description: Engade unha nova comunidade tecnolóxica á plataforma CoruñaTech
+title: "[COMMUNITY] Nova comunidade: "
+labels: ["community", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Grazas por engadir unha nova comunidade a CoruñaTech! 
+        Por favor completa toda a información necesaria para crear a comunidade.
+
+  - type: input
+    id: name
+    attributes:
+      label: Nome da comunidade
+      description: Nome completo da comunidade tecnolóxica
+      placeholder: "Exemplo: Python Coruña"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrición
+      description: Descrición breve da comunidade en galego (máximo 200 caracteres)
+      placeholder: "Exemplo: Comunidade de desenvolvedores Python da Coruña..."
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Sitio web
+      description: URL completa do sitio web oficial (opcional)
+      placeholder: "https://exemplo.com"
+    validations:
+      required: false
+
+  - type: input
+    id: logo
+    attributes:
+      label: Logo
+      description: URL completa do logo/imaxe da comunidade (opcional)
+      placeholder: "https://github.com/comunidade.png"
+    validations:
+      required: false
+
+  - type: textarea
+    id: socials
+    attributes:
+      label: Redes sociais
+      description: Lista as redes sociais no formato "Nome: URL" (unha por liña)
+      placeholder: |
+        Twitter: https://twitter.com/comunidade
+        GitHub: https://github.com/comunidade
+        LinkedIn: https://linkedin.com/company/comunidade
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Etiquetas
+      description: Lista de etiquetas separadas por comas (mínimo 3)
+      placeholder: "comunidade, python, web, galicia"
+    validations:
+      required: true
+
+  - type: input
+    id: technologies
+    attributes:
+      label: Tecnoloxías
+      description: Lista de tecnoloxías separadas por comas (opcional)
+      placeholder: "Python, Django, FastAPI, React"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Frecuencia de encontros
+      description: Con que frecuencia se reúne a comunidade?
+      options:
+        - Semanal
+        - Quincenal
+        - Mensual
+        - Bimensual
+        - Trimestral
+        - Esporádico
+        - Non especificado
+    validations:
+      required: false
+
+  - type: input
+    id: contact
+    attributes:
+      label: Email de contacto
+      description: Email de contacto da comunidade (opcional)
+      placeholder: "contacto@comunidade.gal"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Información adicional
+      description: Calquer información adicional sobre a comunidade
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: automation-check
+    attributes:
+      label: Checklist para automatización
+      description: Verifica que toda a información está correcta
+      options:
+        - label: O nome da comunidade está especificado
+          required: true
+        - label: A descrición está en galego e ten menos de 200 caracteres
+          required: true
+        - label: As etiquetas están separadas por comas (mínimo 3)
+          required: true
+        - label: Se inclúo sitio web, empeza por https://
+          required: false
+        - label: Se inclúo redes sociais, están no formato "Nome: URL"
+          required: false
+        - label: Se inclúo email, ten formato válido
+          required: false
