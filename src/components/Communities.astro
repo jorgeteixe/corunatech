@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import CommunityCard from './CommunityCard.astro';
+import { getCollection } from "astro:content";
+import CommunityCard from "./CommunityCard.astro";
 
-const communities = await getCollection('communities');
+const communities = await getCollection("communities");
 ---
 
 <section class="py-12">
@@ -12,23 +12,24 @@ const communities = await getCollection('communities');
         Comunidades Tecnolóxicas da Coruña
       </h2>
       <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-        Descubre e conéctate coas comunidades tech locais. Desde programación ata metodoloxías áxiles, 
-        aquí atopas o teu espazo na comunidade tecnolóxica galega.
+        Descubre e conéctate coas comunidades tech locais. Desde programación
+        ata metodoloxías áxiles, aquí atopas o teu espazo na comunidade
+        tecnolóxica galega.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {communities.map((community) => (
-        <CommunityCard {...community.data} />
-      ))}
+      {communities.map((community) => <CommunityCard {...community.data} />)}
     </div>
 
-    {communities.length === 0 && (
-      <div class="text-center py-12">
-        <p class="text-gray-400 text-lg">
-          Non se atoparon comunidades. Pronto engadiremos máis!
-        </p>
-      </div>
-    )}
+    {
+      communities.length === 0 && (
+        <div class="text-center py-12">
+          <p class="text-gray-400 text-lg">
+            Non se atoparon comunidades. Pronto engadiremos máis!
+          </p>
+        </div>
+      )
+    }
   </div>
 </section>

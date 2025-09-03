@@ -28,25 +28,27 @@ const {
 } = Astro.props;
 
 const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat('gl', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+  return new Intl.DateTimeFormat("gl", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   }).format(date);
 };
 
 const formatTime = (date: Date) => {
-  return new Intl.DateTimeFormat('gl', {
-    hour: '2-digit',
-    minute: '2-digit',
+  return new Intl.DateTimeFormat("gl", {
+    hour: "2-digit",
+    minute: "2-digit",
   }).format(date);
 };
 ---
 
-<div class="bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700">
+<div
+  class="bg-zinc-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-zinc-700"
+>
   <div class="flex flex-col gap-4">
     <!-- Header -->
     <div class="flex items-start justify-between">
@@ -62,18 +64,22 @@ const formatTime = (date: Date) => {
         <span class="text-gray-400">📅</span>
         {formatDate(date)}
       </p>
-      {duration && (
-        <p class="flex items-center gap-2">
-          <span class="text-gray-400">⏱️</span>
-          Duración: {duration}
-        </p>
-      )}
-      {location && (
-        <p class="flex items-center gap-2">
-          <span class="text-gray-400">📍</span>
-          {location}
-        </p>
-      )}
+      {
+        duration && (
+          <p class="flex items-center gap-2">
+            <span class="text-gray-400">⏱️</span>
+            Duración: {duration}
+          </p>
+        )
+      }
+      {
+        location && (
+          <p class="flex items-center gap-2">
+            <span class="text-gray-400">📍</span>
+            {location}
+          </p>
+        )
+      }
     </div>
 
     <!-- Description -->
@@ -81,25 +87,29 @@ const formatTime = (date: Date) => {
 
     <!-- Tags -->
     <div class="flex flex-wrap gap-2">
-      {tags.map((tag) => (
-        <span class="px-2 py-1 bg-blue-900 text-blue-200 text-xs rounded-full">
-          {tag}
-        </span>
-      ))}
+      {
+        tags.map((tag) => (
+          <span class="px-2 py-1 bg-blue-900 text-blue-200 text-xs rounded-full">
+            {tag}
+          </span>
+        ))
+      }
     </div>
 
     <!-- Footer -->
-    {rsvpLink && (
-      <div class="flex justify-end pt-2 border-t border-zinc-600">
-        <a 
-          href={rsvpLink} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm rounded-lg font-medium transition-colors"
-        >
-          Apuntarse →
-        </a>
-      </div>
-    )}
+    {
+      rsvpLink && (
+        <div class="flex justify-end pt-2 border-t border-zinc-600">
+          <a
+            href={rsvpLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm rounded-lg font-medium transition-colors"
+          >
+            Apuntarse →
+          </a>
+        </div>
+      )
+    }
   </div>
 </div>
