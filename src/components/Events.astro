@@ -1,0 +1,59 @@
+---
+import EventCard from "./EventCard.astro";
+import { getCollection } from "astro:content";
+
+export interface Props {
+  title: string;
+  events: Array<{
+    id: string;
+    data: {
+      title: string;
+      description: string;
+      date: Date;
+      endDate?: Date;
+      duration?: string;
+      location?: string;
+      rsvpLink?: string;
+      tags: string[];
+      community: string;
+    };
+  }>;
+  emptyMessage?: string;
+}
+
+const { title, events, emptyMessage } = Astro.props;
+
+// Get communities to map community IDs to names
+const communities = await getCollection("communities");
+const communityMap = new Map(communities.map((c) => [c.id, c.data.name]));
+---
+
+<section class="py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-white mb-2">
+        {title}
+      </h2>
+    </div>
+
+    {
+      events.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => (
+            <EventCard
+              {...event.data}
+              slug={event.id}
+              communityName={communityMap.get(event.data.community)}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-8">
+          <p class="text-gray-400 text-lg">
+            {emptyMessage || "Non hai eventos nesta categoría."}
+          </p>
+        </div>
+      )
+    }
+  </div>
+</section>

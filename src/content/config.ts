@@ -4,7 +4,6 @@ import { defineCollection, z } from "astro:content";
 const communities = defineCollection({
   loader: glob({ pattern: "*.yaml", base: "./src/content/communities" }),
   schema: z.object({
-    slug: z.string(),
     name: z.string(),
     description: z.string(),
     website: z.string().url().optional(),
@@ -14,7 +13,7 @@ const communities = defineCollection({
         z.object({
           name: z.string(),
           url: z.string().url(),
-        })
+        }),
       )
       .optional(),
     tags: z.array(z.string()),
@@ -27,7 +26,6 @@ const communities = defineCollection({
 const events = defineCollection({
   loader: glob({ pattern: "*.yaml", base: "./src/content/events" }),
   schema: z.object({
-    slug: z.string(),
     title: z.string(),
     description: z.string(),
     date: z.date(),
