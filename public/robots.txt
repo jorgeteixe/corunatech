@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jorgeteixe.github.io/corunatech/sitemap-index.xml
