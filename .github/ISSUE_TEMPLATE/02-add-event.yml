@@ -1,7 +1,7 @@
 name: Engadir Evento
 description: Engade un novo evento das comunidades tecnolóxicas de CoruñaTech
-title: "[EVENT] Novo evento: "
-labels: ["add-event"]
+title: '[EVENT] Novo evento: '
+labels: ['add-event']
 body:
   - type: markdown
     attributes:
@@ -14,7 +14,7 @@ body:
     attributes:
       label: Título do evento
       description: Título completo do evento
-      placeholder: "Exemplo: Meetup Mensual Python - Introdución a FastAPI"
+      placeholder: 'Exemplo: Meetup Mensual Python - Introdución a FastAPI'
     validations:
       required: true
 
@@ -23,7 +23,7 @@ body:
     attributes:
       label: Descrición
       description: Descrición do evento en galego (máximo 300 caracteres)
-      placeholder: "Exemplo: Charla sobre FastAPI para crear APIs modernas con Python..."
+      placeholder: 'Exemplo: Charla sobre FastAPI para crear APIs modernas con Python...'
     validations:
       required: true
 
@@ -32,7 +32,7 @@ body:
     attributes:
       label: Data e hora
       description: Data e hora en formato ISO 8601 (YYYY-MM-DDTHH:MM:SSZ)
-      placeholder: "2025-09-15T19:00:00Z"
+      placeholder: '2025-09-15T19:00:00Z'
     validations:
       required: true
 
@@ -41,7 +41,7 @@ body:
     attributes:
       label: Duración
       description: Duración do evento (opcional) - formato Xh ou XXmin
-      placeholder: "2h, 90min, 1h30min"
+      placeholder: '2h, 90min, 1h30min'
     validations:
       required: false
 
@@ -50,7 +50,7 @@ body:
     attributes:
       label: Localización
       description: Nome do lugar onde se celebra o evento (opcional)
-      placeholder: "Coworking A Coruña, Facultade de Informática UDC"
+      placeholder: 'Coworking A Coruña, Facultade de Informática UDC'
     validations:
       required: false
 
@@ -59,7 +59,7 @@ body:
     attributes:
       label: Enlace de inscrición
       description: URL completa para apuntarse ao evento (opcional)
-      placeholder: "https://www.meetup.com/comunidade/events/123456/"
+      placeholder: 'https://www.meetup.com/comunidade/events/123456/'
     validations:
       required: false
 
@@ -81,6 +81,6 @@ body:
     attributes:
       label: Etiquetas
       description: Lista de etiquetas separadas por comas (mínimo 2)
-      placeholder: "python, web, taller, principiantes"
+      placeholder: 'python, web, taller, principiantes'
     validations:
       required: true

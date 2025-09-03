@@ -1,8 +1,8 @@
-import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import {glob} from 'astro/loaders'
+import {defineCollection, z} from 'astro:content'
 
 const communities = defineCollection({
-  loader: glob({ pattern: "*.yaml", base: "./src/content/communities" }),
+  loader: glob({pattern: '*.yaml', base: './src/content/communities'}),
   schema: z.object({
     name: z.string(),
     description: z.string(),
@@ -12,19 +12,19 @@ const communities = defineCollection({
       .array(
         z.object({
           name: z.string(),
-          url: z.string().url(),
-        }),
+          url: z.string().url()
+        })
       )
       .optional(),
     tags: z.array(z.string()),
     technologies: z.array(z.string()).optional(),
     meetingFrequency: z.string().optional(),
-    contactEmail: z.string().email().optional(),
-  }),
-});
+    contactEmail: z.string().email().optional()
+  })
+})
 
 const events = defineCollection({
-  loader: glob({ pattern: "*.yaml", base: "./src/content/events" }),
+  loader: glob({pattern: '*.yaml', base: './src/content/events'}),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -34,11 +34,11 @@ const events = defineCollection({
     location: z.string().optional(),
     rsvpLink: z.string().url().optional(),
     tags: z.array(z.string()),
-    community: z.string(), // References the community slug
-  }),
-});
+    community: z.string() // References the community slug
+  })
+})
 
 export const collections = {
   communities,
-  events,
-};
+  events
+}

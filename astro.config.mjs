@@ -1,19 +1,19 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import {defineConfig} from 'astro/config'
 
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite'
 
-import mdx from "@astrojs/mdx";
+import mdx from '@astrojs/mdx'
 
-import sitemap from "@astrojs/sitemap";
+import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://jorgeteixe.github.io",
-  base: "/corunatech",
+  site: 'https://jorgeteixe.github.io',
+  base: '/corunatech',
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss()]
   },
 
-  integrations: [mdx(), sitemap()],
-});
+  integrations: [mdx(), sitemap()]
+})

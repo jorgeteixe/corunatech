@@ -1,7 +1,7 @@
 name: Engadir Comunidade
 description: Engade unha nova comunidade tecnolóxica á plataforma CoruñaTech
-title: "[COMMUNITY] Nova comunidade: "
-labels: ["add-community"]
+title: '[COMMUNITY] Nova comunidade: '
+labels: ['add-community']
 body:
   - type: markdown
     attributes:
@@ -14,7 +14,7 @@ body:
     attributes:
       label: Nome da comunidade
       description: Nome completo da comunidade tecnolóxica
-      placeholder: "Exemplo: Python Coruña"
+      placeholder: 'Exemplo: Python Coruña'
     validations:
       required: true
 
@@ -23,7 +23,7 @@ body:
     attributes:
       label: Descrición
       description: Descrición breve da comunidade en galego (máximo 200 caracteres)
-      placeholder: "Exemplo: Comunidade de desenvolvedores Python da Coruña..."
+      placeholder: 'Exemplo: Comunidade de desenvolvedores Python da Coruña...'
     validations:
       required: true
 
@@ -32,7 +32,7 @@ body:
     attributes:
       label: Sitio web
       description: URL completa do sitio web oficial (opcional)
-      placeholder: "https://exemplo.com"
+      placeholder: 'https://exemplo.com'
     validations:
       required: false
 
@@ -41,7 +41,7 @@ body:
     attributes:
       label: Logo
       description: URL completa do logo/imaxe da comunidade (opcional)
-      placeholder: "https://github.com/comunidade.png"
+      placeholder: 'https://github.com/comunidade.png'
     validations:
       required: false
 
@@ -62,7 +62,7 @@ body:
     attributes:
       label: Etiquetas
       description: Lista de etiquetas separadas por comas (mínimo 3)
-      placeholder: "comunidade, python, web, galicia"
+      placeholder: 'comunidade, python, web, galicia'
     validations:
       required: true
 
@@ -71,7 +71,7 @@ body:
     attributes:
       label: Tecnoloxías
       description: Lista de tecnoloxías separadas por comas (opcional)
-      placeholder: "Python, Django, FastAPI, React"
+      placeholder: 'Python, Django, FastAPI, React'
     validations:
       required: false
 
@@ -96,6 +96,6 @@ body:
     attributes:
       label: Email de contacto
       description: Email de contacto da comunidade (opcional)
-      placeholder: "contacto@comunidade.gal"
+      placeholder: 'contacto@comunidade.gal'
     validations:
       required: false
