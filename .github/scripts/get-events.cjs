@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
 module.exports = async ({ github, context, core }) => {
   // Get parameters from environment
@@ -15,6 +16,28 @@ module.exports = async ({ github, context, core }) => {
   
   console.log(`Looking for events between ${startDate.toISOString()} and ${endDate.toISOString()}`);
   
+  // Read all community files to build a lookup map
+  const communitiesDir = path.join(process.cwd(), 'src/content/communities');
+  const communityFiles = fs.readdirSync(communitiesDir).filter(file => file.endsWith('.yaml'));
+  
+  const communityLookup = {};
+  for (const file of communityFiles) {
+    try {
+      const content = fs.readFileSync(path.join(communitiesDir, file), 'utf8');
+      const community = yaml.load(content);
+      
+      if (community && community.name) {
+        // Use filename without extension as slug
+        const slug = path.basename(file, '.yaml');
+        communityLookup[slug] = community.name;
+      }
+    } catch (error) {
+      console.error(`Error reading community ${file}:`, error);
+    }
+  }
+  
+  console.log(`Loaded ${Object.keys(communityLookup).length} communities`);
+  
   // Read all event files
   const eventsDir = path.join(process.cwd(), 'src/content/events');
   const eventFiles = fs.readdirSync(eventsDir).filter(file => file.endsWith('.yaml'));
@@ -24,21 +47,9 @@ module.exports = async ({ github, context, core }) => {
   for (const file of eventFiles) {
     try {
       const content = fs.readFileSync(path.join(eventsDir, file), 'utf8');
-      const lines = content.split('\n');
-      const event = {};
+      const event = yaml.load(content);
       
-      for (const line of lines) {
-        const trimmed = line.trim();
-        if (trimmed && !trimmed.startsWith('#')) {
-          const [key, ...valueParts] = trimmed.split(':');
-          if (key && valueParts.length > 0) {
-            const value = valueParts.join(':').trim();
-            event[key.trim()] = value;
-          }
-        }
-      }
-      
-      if (event.date) {
+      if (event && event.date) {
         const eventDate = new Date(event.date);
         if (eventDate >= startDate && eventDate < endDate) {
           // Format dates for template
@@ -54,8 +65,13 @@ module.exports = async ({ github, context, core }) => {
             timeZone: 'Europe/Madrid'
           });
           
+          // Lookup community name from slug
+          const communityName = communityLookup[event.community] || event.community;
+          
           events.push({
             ...event,
+            community: communityName,
+            communitySlug: event.community,
             date: eventDate,
             formattedDate,
             formattedTime,

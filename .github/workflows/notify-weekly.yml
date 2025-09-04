@@ -19,7 +19,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install handlebars
+        run: npm install handlebars js-yaml
 
       - name: Calculate date range
         id: dates
@@ -62,3 +62,4 @@ jobs:
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           message: ${{ steps.generate-message.outputs.message }}
           format: markdown
+          disable_web_page_preview: true
