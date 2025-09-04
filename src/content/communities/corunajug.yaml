@@ -1,0 +1,13 @@
+name: CoruñaJUG
+description: Comunidade de Java da cidade da Coruña
+website: https://corunajug.es
+logo: https://github.com/corunajug.png
+socials:
+  - name: Twitter
+    url: https://x.com/corunajug
+  - name: Linkedin
+    url: https://linedin.com/corunajug
+tags: [backend, openjdk, spring]
+technologies: [Java, Spring, OpenJDK]
+meetingFrequency: Mensual
+
