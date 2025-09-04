@@ -32,3 +32,76 @@ jobs:
           script: |
             const script = require('./.github/scripts/parse-event.cjs')
             await script({github, context, core})
+
+      - name: Create event file and PR
+        if: steps.process.outputs.valid == 'true'
+        run: |
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          # Create new branch
+          BRANCH_NAME="add-event-${{ steps.process.outputs.slug }}"
+          git checkout -b "$BRANCH_NAME"
+          
+          # Create event file
+          mkdir -p src/content/events
+          echo '${{ steps.process.outputs.yaml_content }}' > "src/content/events/${{ steps.process.outputs.slug }}.yaml"
+          
+          # Commit changes
+          git add "src/content/events/${{ steps.process.outputs.slug }}.yaml"
+          git commit -m "feat: add ${{ steps.process.outputs.title }} event
+
+          Closes #${{ github.event.issue.number }}
+          
+          🤖 Generated with GitHub Actions"
+          
+          # Push branch
+          git push origin "$BRANCH_NAME"
+
+      - name: Create pull request
+        if: steps.process.outputs.valid == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pr } = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `feat: add ${{ steps.process.outputs.title }} event`,
+              head: `add-event-${{ steps.process.outputs.slug }}`,
+              base: 'main',
+              body: `## Novo evento: ${{ steps.process.outputs.title }}
+            
+            Esta PR engade un novo evento ao calendario de CoruñaTech.
+            
+            **Detalles:**
+            - Título: ${{ steps.process.outputs.title }}
+            - Comunidade: ${{ steps.process.outputs.community }}
+            - Data: ${{ steps.process.outputs.date }}
+            - Slug: ${{ steps.process.outputs.slug }}
+            
+            Closes #${{ github.event.issue.number }}
+            
+            ---
+            🤖 Generated automatically from issue form`
+            });
+            
+            // Add success comment to issue
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `✅ **Validación exitosa**
+            
+            O evento foi validado correctamente. Creouse a PR #${pr.number} para revisar e fusionar os cambios.
+            
+            **Arquivo creado:** \`src/content/events/${{ steps.process.outputs.slug }}.yaml\``
+            });
+            
+            // Add labels
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['validation-passed', 'pr-created']
+            });

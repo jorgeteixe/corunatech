@@ -1,0 +1,31 @@
+name: Daily Events Notification
+
+on:
+  schedule:
+    # Every day at 9:00 AM Europe/Madrid (8:00 UTC in winter, 7:00 UTC in summer)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  notify-daily-events:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get today's events
+        uses: actions/github-script@v7
+        id: get-events
+        with:
+          script: |
+            const script = require('./.github/scripts/get-daily-events.cjs')
+            await script({github, context, core})
+
+      - name: Send Telegram notification
+        if: steps.get-events.outputs.has_events == 'true'
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: ${{ steps.get-events.outputs.message }}
+          format: markdown
