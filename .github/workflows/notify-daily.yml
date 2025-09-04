@@ -1,4 +1,4 @@
-name: Daily Events Notification
+name: Notify Daily Events
 
 on:
   schedule:
