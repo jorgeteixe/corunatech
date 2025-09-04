@@ -1,0 +1,49 @@
+name: Add Event to GCal
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  add-to-gcal:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'add-event')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get event file from PR
+        id: get-event
+        run: |
+          # Get the list of changed files in the PR
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          
+          # Find event YAML file added in this PR
+          EVENT_FILE=$(gh pr view $PR_NUMBER --json files --jq '.files[].path' | grep "src/content/events/.*\.yaml$" | head -1)
+          
+          if [ -n "$EVENT_FILE" ]; then
+            echo "event_file=$EVENT_FILE" >> $GITHUB_OUTPUT
+            echo "Found event file: $EVENT_FILE"
+          else
+            echo "No event file found in PR"
+            exit 1
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add event to Google Calendar (placeholder)
+        run: |
+          echo "TODO: Add event to Google Calendar"
+          echo "Event file: ${{ steps.get-event.outputs.event_file }}"
+          echo "PR: ${{ github.event.pull_request.html_url }}"
+          echo "Title: ${{ github.event.pull_request.title }}"
+          
+          # Future implementation would:
+          # 1. Parse the YAML file
+          # 2. Extract event details (title, date, location, etc.)
+          # 3. Use Google Calendar API to create event
+          # 4. Potentially comment back on the PR with calendar link

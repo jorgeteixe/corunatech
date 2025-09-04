@@ -86,6 +86,14 @@ jobs:
             🤖 Generated automatically from issue form`
             });
             
+            // Add label to the PR
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              labels: ['add-event']
+            });
+            
             // Add success comment to issue
             await github.rest.issues.createComment({
               owner: context.repo.owner,
