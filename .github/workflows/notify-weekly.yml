@@ -13,12 +13,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Get next week events
+      - name: Calculate date range
+        id: dates
+        run: |
+          # Get current date in Madrid timezone and calculate next week range
+          MADRID_NOW=$(TZ="Europe/Madrid" date -Iseconds)
+          WEEK_START=$(TZ="Europe/Madrid" date -d "$MADRID_NOW" +"%Y-%m-%dT00:00:00")
+          WEEK_END=$(TZ="Europe/Madrid" date -d "$MADRID_NOW + 7 days" +"%Y-%m-%dT00:00:00")
+          
+          echo "start_date=${WEEK_START}" >> $GITHUB_OUTPUT
+          echo "end_date=${WEEK_END}" >> $GITHUB_OUTPUT
+
+      - name: Get events
         uses: actions/github-script@v7
         id: get-events
+        env:
+          START_DATE: ${{ steps.dates.outputs.start_date }}
+          END_DATE: ${{ steps.dates.outputs.end_date }}
         with:
           script: |
-            const script = require('./.github/scripts/get-weekly-events.cjs')
+            const script = require('./.github/scripts/get-events.cjs')
+            await script({github, context, core})
+
+      - name: Generate message
+        uses: actions/github-script@v7
+        id: generate-message
+        env:
+          TEMPLATE_NAME: weekly-notification
+          EVENTS_JSON: ${{ steps.get-events.outputs.events }}
+        with:
+          script: |
+            const script = require('./.github/scripts/generate-message.cjs')
             await script({github, context, core})
 
       - name: Send Telegram notification
@@ -27,5 +52,5 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          message: ${{ steps.get-events.outputs.message }}
+          message: ${{ steps.generate-message.outputs.message }}
           format: markdown
