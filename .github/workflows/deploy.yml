@@ -11,6 +11,9 @@ on:
       - 'package.json'
       - 'pnpm-lock.yaml'
       - 'pnpm-workspace.yaml'
+  # # Daily rebuild to update the page (3:00 AM UTC)
+  # schedule:
+  #   - cron: '0 3 * * *'
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
