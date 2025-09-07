@@ -1,1 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import 'tailwindcss';
+
+:root {
+  /* Base Color Palette */
+  --marian-blue: #1c398e;
+  --white: #ffffff;
+  --licorice: #230903;
+  --ebony: #656256;
+  --sandy-brown: #ee964b;
+
+  /* Light Theme (Default) */
+  --color-primary: var(--white);
+  --color-secondary: var(--sandy-brown);
+  --color-accent: var(--marian-blue);
+  --color-text-base: var(--licorice);
+  --color-text-muted: var(--ebony);
+  --color-border: var(--ebony);
+}
+
+[data-theme='dark'] {
+  /* Dark Theme */
+  --color-primary: var(--licorice);
+  --color-secondary: var(--ebony);
+  --color-accent: var(--sandy-brown);
+  --color-text-base: var(--white);
+  --color-text-muted: var(--ebony);
+  --color-border: var(--ebony);
+}
+
+/* Force apply fonts */
+.font-sans {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.font-display {
+  font-family: 'Permanent Marker', cursive;
+}
