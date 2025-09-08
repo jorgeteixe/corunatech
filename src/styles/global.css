@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gabriela&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import 'tailwindcss';
 
 :root {
@@ -8,14 +8,19 @@
   --licorice: #230903;
   --ebony: #656256;
   --sandy-brown: #ee964b;
+}
 
-  /* Light Theme (Default) */
+[data-theme='light'] {
+  /* Light Theme */
   --color-primary: var(--white);
   --color-secondary: var(--sandy-brown);
   --color-accent: var(--marian-blue);
   --color-text-base: var(--licorice);
   --color-text-muted: var(--ebony);
   --color-border: var(--ebony);
+  --color-bg-primary: var(--marian-blue);
+  --color-bg-secondary: var(--white);
+  --color-bg-accent: var(--sandy-brown);
 }
 
 [data-theme='dark'] {
@@ -26,13 +31,22 @@
   --color-text-base: var(--white);
   --color-text-muted: var(--ebony);
   --color-border: var(--ebony);
+  --color-bg-primary: var(--sandy-brown);
+  --color-bg-secondary: var(--ebony);
+  --color-bg-accent: var(--marian-blue);
 }
 
-/* Force apply fonts */
-.font-sans {
-  font-family: 'Ubuntu', sans-serif;
-}
+@theme {
+  --color-primary: var(--white);
+  --color-secondary: var(--sandy-brown);
+  --color-accent: var(--marian-blue);
+  --color-text-base: var(--licorice);
+  --color-text-muted: var(--ebony);
+  --color-border: var(--ebony);
+  --color-bg-primary: var(--marian-blue);
+  --color-bg-secondary: var(--white);
+  --color-bg-accent: var(--sandy-brown);
 
-.font-display {
-  font-family: 'Permanent Marker', cursive;
+  --font-sans: 'Ubuntu', sans-serif;
+  --font-display: 'Gabriela', serif;
 }

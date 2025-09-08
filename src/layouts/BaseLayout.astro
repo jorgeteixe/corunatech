@@ -1,4 +1,5 @@
 ---
+import Header from '../components/Header.astro'
 import '../styles/global.css'
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
   image?: string
 }
 
-const {title = '', description = '', image = '/meta.png'} = Astro.props
+const { title = '', description = '', image = '/meta.png' } = Astro.props
 
 const siteUrl = Astro.site?.toString()
 const imageUrl = `${siteUrl}${image}`
@@ -77,14 +78,11 @@ const imageUrl = `${siteUrl}${image}`
         return 'light'
       })()
 
-      if (theme === 'light') {
-        document.documentElement.removeAttribute('data-theme')
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark')
-      }
+      document.documentElement.setAttribute('data-theme', theme)
     </script>
   </head>
-  <body class="h-full font-sans">
+  <body class="h-full font-sans bg-primary text-text-base mx-auto">
+    <Header />
     <slot />
   </body>
 </html>

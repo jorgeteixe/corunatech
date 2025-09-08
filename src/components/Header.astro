@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets'
+import corunaTechLogo from '../assets/logo.png'
+import ThemeToggle from './ThemeToggle.astro'
+---
+
+<header
+  class="absolute top-0 left-0 right-0 z-10 mx-auto grid w-full grid-cols-3 items-start p-6"
+>
+  <nav class="flex items-center gap-6 justify-self-start">
+    <a
+      href="#comunidades"
+      class="text-lg text-accent uppercase rounded-full px-4 py-2 transition-all hover:bg-secondary hover:text-text-base"
+    >
+      Comunidades
+    </a>
+    <a
+      href="#eventos"
+      class="text-lg text-accent uppercase rounded-full px-4 py-2 transition-all hover:bg-secondary hover:text-text-base"
+    >
+      Eventos
+    </a>
+  </nav>
+  <a href="/" aria-current="page" aria-label="home" class="justify-self-center">
+    <Image
+      src={corunaTechLogo}
+      alt="Coruna Tech Logo"
+      height={100}
+      class="h-auto w-auto"
+    />
+  </a>
+  <div class="flex flex-row justify-end gap-4">
+    <nav class="flex items-center gap-6 justify-self-start">
+      <a
+        href="/acerca-de"
+        class="text-lg text-accent uppercase rounded-full px-4 py-2 transition-all hover:bg-secondary hover:text-text-base"
+      >
+        Acerca de
+      </a>
+    </nav>
+    <div class="flex items-center gap-6 justify-self-start">
+      <ThemeToggle />
+    </div>
+  </div>
+</header>
