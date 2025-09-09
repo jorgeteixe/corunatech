@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+type Props = {
+  community: CollectionEntry<'communities'>
+}
+
+const { community } = Astro.props
+const { name, logo } = community.data
+---
+
+<a
+  href={`/communities/${community.id}`}
+  class="group flex flex-col items-center gap-2 rounded-2xl bg-white p-4 text-center transition-transform duration-300 hover:scale-105"
+>
+  <img src={logo} alt="" class="aspect-square w-24 object-cover" />
+  <h3 class="font-bold text-black">{name}</h3>
+</a>
