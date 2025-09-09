@@ -1,14 +1,11 @@
 .events-section {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
 }
 
 .events-container {
   max-width: 80rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .events-group {
@@ -18,7 +15,7 @@
 .events-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: white;
+  color: var(--color-text-primary);
   margin-bottom: 2rem;
 }
 
@@ -42,11 +39,10 @@
 
 .events-empty {
   text-align: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
 }
 
 .events-empty-text {
-  color: #9ca3af;
+  color: var(--color-text-muted);
   font-size: 1.125rem;
 }

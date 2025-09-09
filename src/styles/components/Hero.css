@@ -9,11 +9,9 @@
 }
 
 .hero-container {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0 1rem;
 }
 
 .hero-title {
@@ -36,11 +34,10 @@
 }
 
 .hero-scroll-link {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   display: inline-block;
   animation: bounce 1s infinite;
-  border-radius: 9999px;
+  border-radius: var(--border-radius-full);
   background-color: var(--color-secondary);
   padding: 1rem;
   color: var(--color-text-base);

@@ -23,9 +23,5 @@
 .community-card-name {
   font-weight: 700;
   font-size: 1.25rem;
-  color: black;
-}
-
-.community-card-name:hover {
-  text-decoration: underline;
+  color: var(--color-text-base);
 }

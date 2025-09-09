@@ -29,8 +29,7 @@
   line-height: 1.75rem;
   color: var(--color-text-primary);
   max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
 .communities-grid {
@@ -53,8 +52,7 @@
 
 .communities-empty {
   text-align: center;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 3rem 0;
 }
 
 .communities-empty-text {

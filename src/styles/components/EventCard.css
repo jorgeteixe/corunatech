@@ -1,14 +1,14 @@
 .event-card {
   background-color: var(--color-bg-secondary);
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
   padding: 1.5rem;
   transition: box-shadow 0.3s;
   border: 1px solid var(--color-border);
 }
 
 .event-card:hover {
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .event-card-content {
@@ -69,14 +69,11 @@
 }
 
 .event-card-tag {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding: 0.25rem 0.5rem;
   background-color: var(--color-bg-primary);
   color: var(--color-text-accent);
   font-size: 0.75rem;
-  border-radius: 9999px;
+  border-radius: var(--border-radius-full);
 }
 
 .event-card-footer {
@@ -87,14 +84,11 @@
 }
 
 .event-card-rsvp-link {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: var(--color-bg-accent);
   color: var(--color-text-base);
   font-size: 0.875rem;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius-lg);
   font-weight: 500;
   transition: background-color 0.3s;
 }

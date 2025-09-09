@@ -4,8 +4,7 @@
   left: 0;
   right: 0;
   z-index: 10;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -24,11 +23,8 @@
   font-size: 1.125rem;
   color: var(--color-text-accent);
   text-transform: uppercase;
-  border-radius: 9999px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  border-radius: var(--border-radius-full);
+  padding: 0.5rem 1rem;
   transition: all 0.3s;
 }
 
