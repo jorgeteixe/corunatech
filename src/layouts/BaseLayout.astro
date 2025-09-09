@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro'
 import '../styles/global.css'
+import '../styles/layouts/BaseLayout.css'
 
 interface Props {
   title?: string
@@ -15,7 +16,7 @@ const imageUrl = `${siteUrl}${image}`
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -81,7 +82,7 @@ const imageUrl = `${siteUrl}${image}`
       document.documentElement.setAttribute('data-theme', theme)
     </script>
   </head>
-  <body class="h-full font-sans bg-primary text-text-base mx-auto">
+  <body>
     <Header />
     <slot />
   </body>

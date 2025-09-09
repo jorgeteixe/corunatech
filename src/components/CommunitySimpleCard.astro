@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
+import '../styles/components/CommunitySimpleCard.css'
 
 type Props = {
   community: CollectionEntry<'communities'>
@@ -7,12 +8,10 @@ type Props = {
 
 const { community } = Astro.props
 const { name, logo } = community.data
+const slug = community.id.replace(/\.yaml$/, '')
 ---
 
-<a
-  href={`/communities/${community.id}`}
-  class="group flex flex-col items-center gap-2 rounded-2xl bg-white p-4 text-center transition-transform duration-300 hover:scale-105"
->
-  <img src={logo} alt="" class="aspect-square w-24 object-cover" />
-  <h3 class="font-bold text-black">{name}</h3>
+<a href={`/communities/${slug}`} class="community-card">
+  <img src={logo} alt="" class="community-card-logo" />
+  <h3 class="community-card-name">{name}</h3>
 </a>

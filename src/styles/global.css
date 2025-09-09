@@ -17,6 +17,8 @@
   --color-accent: var(--marian-blue);
   --color-text-base: var(--licorice);
   --color-text-muted: var(--ebony);
+  --color-text-primary: var(--marian-blue);
+  --color-text-accent: var(--sandy-brown);
   --color-border: var(--ebony);
   --color-bg-primary: var(--marian-blue);
   --color-bg-secondary: var(--white);
@@ -30,9 +32,11 @@
   --color-accent: var(--sandy-brown);
   --color-text-base: var(--white);
   --color-text-muted: var(--ebony);
+  --color-text-primary: var(--sandy-brown);
+  --color-text-accent: var(--marian-blue);
   --color-border: var(--ebony);
   --color-bg-primary: var(--sandy-brown);
-  --color-bg-secondary: var(--ebony);
+  --color-bg-secondary: var(---marian-blue);
   --color-bg-accent: var(--marian-blue);
 }
 
@@ -49,4 +53,30 @@
 
   --font-sans: 'Ubuntu', sans-serif;
   --font-display: 'Gabriela', serif;
+}
+
+.link-effect {
+  color: var(--color-text-accent);
+  text-decoration: none;
+  position: relative;
+  z-index: 1;
+  padding: 3px;
+  margin: -3px;
+  background: linear-gradient(
+      to right,
+      var(--color-text-accent),
+      var(--color-text-accent)
+    )
+    no-repeat right;
+  background-size: 0% auto;
+  transition: background-size 0.3s, background-position 0s;
+}
+
+.link-effect:hover {
+  background-size: 100% auto;
+  background-position: left;
+}
+
+.link-effect span {
+  mix-blend-mode: difference;
 }

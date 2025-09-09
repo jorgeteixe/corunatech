@@ -1,0 +1,31 @@
+.community-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 1rem;
+  background-color: var(--color-bg-secondary);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.community-card:hover {
+  transform: scale(1.05);
+}
+
+.community-card-logo {
+  width: 6rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.community-card-name {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: black;
+}
+
+.community-card-name:hover {
+  text-decoration: underline;
+}

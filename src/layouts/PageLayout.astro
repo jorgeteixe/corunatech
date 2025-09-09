@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro'
+import '../styles/layouts/PageLayout.css'
 
 interface Props {
   title?: string
@@ -11,7 +12,7 @@ const { title, description, image } = Astro.props
 ---
 
 <BaseLayout title={title} description={description} image={image}>
-  <div class="min-h-screen">
+  <div class="page-layout">
     <main>
       <slot />
     </main>

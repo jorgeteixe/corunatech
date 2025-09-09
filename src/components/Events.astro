@@ -1,34 +1,35 @@
 ---
-import EventCard from "./EventCard.astro";
-import { getCollection } from "astro:content";
+import EventCard from './EventCard.astro'
+import { getCollection } from 'astro:content'
+import '../styles/components/Events.css'
 
 // Get all events and communities
-const allEvents = await getCollection("events");
-const communities = await getCollection("communities");
-const communityMap = new Map(communities.map((c) => [c.id, c.data.name]));
+const allEvents = await getCollection('events')
+const communities = await getCollection('communities')
+const communityMap = new Map(communities.map(c => [c.id, c.data.name]))
 
 // Current date for comparison (build time)
-const now = new Date();
+const now = new Date()
 
 // Filter events into future and past
 const futureEvents = allEvents
-  .filter((event) => event.data.date >= now)
-  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+  .filter(event => event.data.date >= now)
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
 
 const pastEvents = allEvents
-  .filter((event) => event.data.date < now)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  .filter(event => event.data.date < now)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 ---
 
-<section class="py-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="events-section">
+  <div class="events-container">
     <!-- Future Events -->
-    <div class="mb-12">
-      <h2 class="text-2xl font-bold text-white mb-8">Próximos Eventos</h2>
+    <div class="events-group">
+      <h2 class="events-title">Próximos Eventos</h2>
       {
         futureEvents.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {futureEvents.map((event) => (
+          <div class="events-grid">
+            {futureEvents.map(event => (
               <EventCard
                 {...event.data}
                 slug={event.id}
@@ -37,8 +38,8 @@ const pastEvents = allEvents
             ))}
           </div>
         ) : (
-          <div class="text-center py-8">
-            <p class="text-gray-400 text-lg">
+          <div class="events-empty">
+            <p class="events-empty-text">
               Non hai eventos próximos programados.
             </p>
           </div>
@@ -48,11 +49,11 @@ const pastEvents = allEvents
 
     <!-- Past Events -->
     <div>
-      <h2 class="text-2xl font-bold text-white mb-8">Eventos Pasados</h2>
+      <h2 class="events-title">Eventos Pasados</h2>
       {
         pastEvents.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pastEvents.map((event) => (
+          <div class="events-grid">
+            {pastEvents.map(event => (
               <EventCard
                 {...event.data}
                 slug={event.id}
@@ -61,8 +62,8 @@ const pastEvents = allEvents
             ))}
           </div>
         ) : (
-          <div class="text-center py-8">
-            <p class="text-gray-400 text-lg">
+          <div class="events-empty">
+            <p class="events-empty-text">
               Non hai eventos pasados rexistrados.
             </p>
           </div>
