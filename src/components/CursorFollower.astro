@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content'
+import '../styles/components/CursorFollower.css'
+
+const communities = await getCollection('communities')
+const communityLogos = communities.map(community => community.data.logo)
+---
+
+<div id="cursor-follower" class="cursor-follower">
+  <span class="cursor-text">click</span>
+</div>
+
+<script define:vars={{ communityLogos }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const follower = document.getElementById('cursor-follower')
+
+    // Mejoramos la comunicación con el botón de borrado a través de un evento personalizado
+    document.addEventListener('clear-stickers', () => {
+      const stickers = document.querySelectorAll('.click-sticker')
+      stickers.forEach(sticker => sticker.remove())
+    })
+
+    if (follower) {
+      document.addEventListener('mousemove', e => {
+        follower.style.left = `${e.clientX}px`
+        follower.style.top = `${e.clientY}px`
+      })
+
+      document.addEventListener('click', e => {
+        const target = e.target
+
+        if (target.closest('a, button')) {
+          return
+        }
+
+        const outerContainer = document.createElement('div')
+        const stickerImage = document.createElement('img')
+
+        const randomLogo =
+          communityLogos[Math.floor(Math.random() * communityLogos.length)]
+        const randomRotation = Math.random() * 30 - 15
+
+        // Usamos las formas del componente de React
+        const stickerShapes = [
+          'shape-circle',
+          'shape-rounded',
+          'shape-pill',
+          'shape-squircle',
+          'shape-blob',
+          'shape-arch',
+          'shape-shield',
+          'shape-ticket'
+        ]
+        // Usamos los bordes solicitados
+        const stickerBorders = [
+          'border-simple',
+          'border-double',
+          'border-dotted',
+          'border-dashed'
+        ]
+
+        const randomShape =
+          stickerShapes[Math.floor(Math.random() * stickerShapes.length)]
+        const randomBorder =
+          stickerBorders[Math.floor(Math.random() * stickerBorders.length)]
+
+        // Añadimos un color aleatorio para el borde (del 1 al 5)
+        const randomColor = `border-color-${Math.floor(Math.random() * 5) + 1}`
+
+        outerContainer.classList.add(
+          'click-sticker',
+          randomShape,
+          randomBorder,
+          randomColor
+        )
+        outerContainer.style.left = `${e.pageX}px`
+        outerContainer.style.top = `${e.pageY}px`
+        outerContainer.style.transform = `translate(-50%, -50%) scale(1) rotate(${randomRotation}deg)`
+
+        stickerImage.src = randomLogo // Los logos son URLs directas
+        stickerImage.alt = 'Community Logo Sticker'
+        stickerImage.classList.add('sticker-image-content')
+        // Agregamos un evento de error para detectar fallos de carga de imagen
+        stickerImage.onerror = function () {
+          this.src = 'https://placekitten.com/100/100' // Imagen de fallback
+          console.error('Error cargando logo:', randomLogo)
+        }
+
+        outerContainer.appendChild(stickerImage)
+
+        const animation = outerContainer.animate(
+          [
+            {
+              transform: `translate(-50%, -50%) scale(0) rotate(${randomRotation}deg)`
+            },
+            {
+              transform: `translate(-50%, -50%) scale(1) rotate(${randomRotation}deg)`
+            }
+          ],
+          {
+            duration: 200,
+            easing: 'ease-out'
+          }
+        )
+        animation.play()
+
+        document.body.appendChild(outerContainer)
+      })
+    }
+  })
+</script>

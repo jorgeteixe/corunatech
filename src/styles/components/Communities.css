@@ -11,7 +11,7 @@
 }
 
 .communities-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
 }
 
@@ -29,7 +29,7 @@
   line-height: 1.75rem;
   color: var(--color-text-primary);
   max-width: 48rem;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .communities-grid {

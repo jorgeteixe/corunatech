@@ -1,0 +1,15 @@
+.clear-stickers-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-md);
+  color: var(--color-text-base);
+  transition: background-color 0.3s;
+  font-size: 1.5rem; /* Para que el emoji se vea bien */
+  line-height: 1; /* Para alinear el emoji verticalmente */
+}
+
+.clear-stickers-button:hover {
+  background-color: var(--color-secondary);
+}

@@ -1,0 +1,20 @@
+---
+import '../styles/components/ClearStickersButton.css'
+---
+
+<button
+  id="clear-stickers-button"
+  class="clear-stickers-button"
+  title="Limpiar pegatinas"
+>
+  🧹
+</button>
+
+<script>
+  const clearButton = document.getElementById('clear-stickers-button')
+  if (clearButton) {
+    clearButton.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('clear-stickers'))
+    })
+  }
+</script>

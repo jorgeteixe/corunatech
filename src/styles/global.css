@@ -8,6 +8,8 @@
   --licorice: #230903;
   --ebony: #656256;
   --sandy-brown: #ee964b;
+
+  --light-gray: #f5f5f5;
 }
 
 [data-theme='light'] {
@@ -20,7 +22,8 @@
   --color-text-primary: var(--marian-blue);
   --color-text-accent: var(--sandy-brown);
   --color-border: var(--ebony);
-  --color-bg-primary: var(--marian-blue);
+  --color-border-sticker: var(--light-gray);
+  --color-bg-primary: var(--white);
   --color-bg-secondary: var(--white);
   --color-bg-accent: var(--sandy-brown);
 }
@@ -33,10 +36,11 @@
   --color-text-base: var(--white);
   --color-text-muted: var(--ebony);
   --color-text-primary: var(--sandy-brown);
-  --color-text-accent: var(--marian-blue);
+  --color-text-accent: var(--sandy-brown);
   --color-border: var(--ebony);
-  --color-bg-primary: var(--sandy-brown);
-  --color-bg-secondary: var(---marian-blue);
+  --color-border-sticker: var(--ebony);
+  --color-bg-primary: var(--licorice);
+  --color-bg-secondary: var(--marian-blue);
   --color-bg-accent: var(--marian-blue);
 }
 
@@ -89,4 +93,12 @@
 
 .link-effect span {
   mix-blend-mode: difference;
+}
+
+.img-outline-effect {
+  filter: drop-shadow(3px 0px 0 var(--color-border-sticker))
+    drop-shadow(-3px 0px 0 var(--color-border-sticker))
+    drop-shadow(0px 3px 0 var(--color-border-sticker))
+    drop-shadow(0px -3px 0 var(--color-border-sticker))
+    drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.2));
 }

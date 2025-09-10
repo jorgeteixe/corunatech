@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import corunaTechLogo from '../assets/logo.png'
 import ThemeToggle from './ThemeToggle.astro'
+import ClearStickersButton from './ClearStickersButton.astro'
 import '../styles/components/Header.css'
 ---
 
@@ -10,7 +11,12 @@ import '../styles/components/Header.css'
     <a href="#comunidades" class="header-nav-link"> Comunidades </a>
     <a href="#eventos" class="header-nav-link"> Eventos </a>
   </nav>
-  <a href="/" aria-current="page" aria-label="home" class="header-logo-link">
+  <a
+    href="/corunatech"
+    aria-current="page"
+    aria-label="home"
+    class="header-logo-link"
+  >
     <Image
       src={corunaTechLogo}
       alt="Coruna Tech Logo"
@@ -19,11 +25,9 @@ import '../styles/components/Header.css'
     />
   </a>
   <div class="header-right">
-    <nav class="header-right-nav">
-      <a href="/acerca-de" class="header-nav-link"> Acerca de </a>
-    </nav>
     <div class="header-theme-toggle">
       <ThemeToggle />
     </div>
+    <ClearStickersButton />
   </div>
 </header>
