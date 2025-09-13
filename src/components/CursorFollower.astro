@@ -21,13 +21,43 @@ const communityLogos = communities.map(community => community.data.logo)
     })
 
     if (follower) {
+      let cursorX = 0
+      let cursorY = 0
+      let followerX = 0
+      let followerY = 0
+
       document.addEventListener('mousemove', e => {
-        follower.style.left = `${e.clientX}px`
-        follower.style.top = `${e.clientY}px`
+        cursorX = e.clientX
+        cursorY = e.clientY
       })
+
+      function updateFollowerPosition() {
+        followerX += (cursorX - followerX) * 0.1
+        followerY += (cursorY - followerY) * 0.1
+
+        if (follower) {
+          follower.style.left = `${followerX}px`
+          follower.style.top = `${followerY}px`
+        }
+
+        requestAnimationFrame(updateFollowerPosition)
+      }
+
+      updateFollowerPosition()
 
       document.addEventListener('click', e => {
         const target = e.target
+
+        if (follower) {
+          const textSpan = follower.querySelector('.cursor-text')
+          if (textSpan) {
+            textSpan.textContent = 'click!'
+
+            setTimeout(() => {
+              textSpan.textContent = 'click'
+            }, 1000)
+          }
+        }
 
         if (target.closest('a, button')) {
           return
