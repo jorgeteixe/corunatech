@@ -1,0 +1,194 @@
+---
+// src/pages/communities/[slug].astro
+import { getCollection } from 'astro:content'
+import DetailLayout from '../../layouts/DetailLayout.astro'
+import EventCard from '../../components/EventCard.astro'
+import '../../styles/pages/CommunityDetail.css'
+
+// Genera rutas para todas las comunidades
+export async function getStaticPaths() {
+  const communities = await getCollection('communities')
+  return communities.map(community => {
+    // Elimina la extensión .yaml del id para el slug
+    const slug = community.id.replace(/\.yaml$/, '')
+    return {
+      params: { slug },
+      props: { community }
+    }
+  })
+}
+
+// Obtiene la comunidad y sus eventos
+const { community } = Astro.props
+const {
+  name,
+  description,
+  logo,
+  website,
+  socials,
+  tags,
+  technologies,
+  meetingFrequency
+} = community.data
+
+// Obtiene el slug de la comunidad (sin extensión .yaml)
+const communitySlug = community.id.replace(/\.yaml$/, '')
+
+// Obtiene todos los eventos relacionados con esta comunidad
+const allEvents = await getCollection(
+  'events',
+  ({ data }) => data.community === communitySlug
+)
+
+// Separar eventos en próximos y pasados
+const now = new Date()
+const upcomingEvents = allEvents
+  .filter(event => new Date(event.data.date) > now)
+  .sort(
+    (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
+  )
+
+const pastEvents = allEvents
+  .filter(event => new Date(event.data.date) <= now)
+  .sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+  )
+---
+
+<DetailLayout title={`${name} - CoruñaTech`} description={description}>
+  <div class="community-detail">
+    <div class="community-header">
+      <div class="community-logo">
+        {
+          logo && (
+            <img src={logo} alt={`Logo de ${name}`} crossorigin="anonymous" />
+          )
+        }
+      </div>
+      <div class="community-info">
+        <h1 class="community-name">{name}</h1>
+        <p class="community-description">{description}</p>
+
+        <div class="community-links">
+          {
+            website && (
+              <a
+                href={website}
+                class="community-website-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visitar web
+              </a>
+            )
+          }
+
+          {
+            socials && socials.length > 0 && (
+              <div class="community-socials">
+                {socials.map(social => (
+                  <a
+                    href={social.url}
+                    class={`social-link ${social.name.toLowerCase()}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${social.name} de ${name}`}
+                  >
+                    {social.name}
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="community-details">
+      <div class="community-metadata">
+        {
+          technologies && technologies.length > 0 && (
+            <div class="community-tech">
+              <h3>Tecnoloxías</h3>
+              <div class="tech-tags">
+                {technologies.map(tech => (
+                  <span class="tag tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        {
+          tags && tags.length > 0 && (
+            <div class="community-tags">
+              <h3>Tags</h3>
+              <div class="tags-list">
+                {tags.map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          )
+        }
+
+        {
+          meetingFrequency && (
+            <div class="meeting-frequency">
+              <h3>Frecuencia</h3>
+              <p>{meetingFrequency}</p>
+            </div>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="community-events">
+      <h2>Próximos eventos</h2>
+      {
+        upcomingEvents.length > 0 ? (
+          <div class="events-list">
+            {upcomingEvents.map(event => (
+              <EventCard
+                slug={event.id}
+                title={event.data.title}
+                description={event.data.description}
+                date={event.data.date}
+                location={event.data.location}
+                rsvpLink={event.data.rsvpLink}
+                tags={event.data.tags}
+                community={event.data.community}
+                communityName={name}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="no-events">Non hai eventos próximos programados.</p>
+        )
+      }
+
+      <h2>Eventos pasados</h2>
+      {
+        pastEvents.length > 0 ? (
+          <div class="events-list past-events">
+            {pastEvents.map(event => (
+              <EventCard
+                slug={event.id}
+                title={event.data.title}
+                description={event.data.description}
+                date={event.data.date}
+                location={event.data.location}
+                rsvpLink={event.data.rsvpLink}
+                tags={event.data.tags}
+                community={event.data.community}
+                communityName={name}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="no-events">Non hai eventos pasados.</p>
+        )
+      }
+    </div>
+  </div>
+</DetailLayout>
