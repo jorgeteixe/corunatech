@@ -1,0 +1,33 @@
+.header-detail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-main);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-detail-logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.header-detail-logo {
+  height: auto;
+  width: auto;
+  max-height: 60px;
+}
+
+.header-detail-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-detail-theme-toggle {
+  margin-left: 1rem;
+}

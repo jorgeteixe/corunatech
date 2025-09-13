@@ -1,9 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro'
-import Header from '../components/Header.astro'
-import CursorFollower from '../components/CursorFollower.astro'
-
-import '../styles/layouts/PageLayout.css'
+import HeaderDetail from '../components/HeaderDetail.astro'
+import '../styles/layouts/DetailLayout.css'
 
 interface Props {
   title?: string
@@ -15,9 +13,8 @@ const { title, description, image } = Astro.props
 ---
 
 <BaseLayout title={title} description={description} image={image}>
-  <Header slot="header" />
-  <main class="page-layout">
+  <HeaderDetail slot="header" />
+  <main class="detail-layout-main">
     <slot />
   </main>
-  <CursorFollower slot="footer" />
 </BaseLayout>

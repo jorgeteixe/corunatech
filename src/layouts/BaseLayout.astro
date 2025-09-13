@@ -1,6 +1,4 @@
 ---
-import Header from '../components/Header.astro'
-import CursorFollower from '../components/CursorFollower.astro'
 import '../styles/global.css'
 import '../styles/layouts/BaseLayout.css'
 
@@ -84,8 +82,8 @@ const imageUrl = `${siteUrl}${image}`
     </script>
   </head>
   <body>
-    <Header />
+    <slot name="header" />
     <slot />
-    <CursorFollower />
+    <slot name="footer" />
   </body>
 </html>
