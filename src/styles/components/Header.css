@@ -21,7 +21,7 @@
 
 .header-nav-link {
   font-size: 1.125rem;
-  color: var(--color-text-accent);
+  color: var(--text-title);
   text-transform: uppercase;
   border-radius: var(--border-radius-full);
   padding: 0.5rem 1rem;
@@ -29,8 +29,8 @@
 }
 
 .header-nav-link:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-text-base);
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
 }
 
 .header-logo-link {

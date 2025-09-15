@@ -58,53 +58,52 @@ const pastEvents = allEvents
 <DetailLayout title={`${name} - CoruñaTech`} description={description}>
   <div class="community-detail">
     <div class="community-header">
-      <div class="community-logo">
-        {
-          logo && (
-            <img src={logo} alt={`Logo de ${name}`} crossorigin="anonymous" />
-          )
-        }
-      </div>
-      <div class="community-info">
-        <h1 class="community-name">{name}</h1>
-        <p class="community-description">{description}</p>
+      <div class="community-header-content">
+        <div class="community-logo">
+          {logo && <img src={logo} alt={`Logo de ${name}`} />}
+        </div>
+        <div class="community-info">
+          <h1 class="community-name">{name}</h1>
+          <p class="community-description">{description}</p>
 
-        <div class="community-links">
-          {
-            website && (
-              <a
-                href={website}
-                class="community-website-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Visitar web
-              </a>
-            )
-          }
+          <div class="community-links">
+            {
+              website && (
+                <a
+                  href={website}
+                  class="community-website-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visitar web
+                </a>
+              )
+            }
 
-          {
-            socials && socials.length > 0 && (
-              <div class="community-socials">
-                {socials.map(social => (
-                  <a
-                    href={social.url}
-                    class={`social-link ${social.name.toLowerCase()}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${social.name} de ${name}`}
-                  >
-                    {social.name}
-                  </a>
-                ))}
-              </div>
-            )
-          }
+            {
+              socials && socials.length > 0 && (
+                <div class="community-socials">
+                  {socials.map(social => (
+                    <a
+                      href={social.url}
+                      class={`social-link ${social.name.toLowerCase()}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${social.name} de ${name}`}
+                    >
+                      {social.name}
+                    </a>
+                  ))}
+                </div>
+              )
+            }
+          </div>
         </div>
       </div>
     </div>
 
     <div class="community-details">
+      <div class="community-logo"></div>
       <div class="community-metadata">
         {
           technologies && technologies.length > 0 && (
@@ -118,20 +117,6 @@ const pastEvents = allEvents
             </div>
           )
         }
-
-        {
-          tags && tags.length > 0 && (
-            <div class="community-tags">
-              <h3>Tags</h3>
-              <div class="tags-list">
-                {tags.map(tag => (
-                  <span class="tag">{tag}</span>
-                ))}
-              </div>
-            </div>
-          )
-        }
-
         {
           meetingFrequency && (
             <div class="meeting-frequency">
@@ -178,7 +163,6 @@ const pastEvents = allEvents
                 description={event.data.description}
                 date={event.data.date}
                 location={event.data.location}
-                rsvpLink={event.data.rsvpLink}
                 tags={event.data.tags}
                 community={event.data.community}
                 communityName={name}

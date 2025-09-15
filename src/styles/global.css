@@ -1,62 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Gabriela&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import 'tailwindcss';
 
 :root {
-  /* Base Color Palette */
-  --marian-blue: #1c398e;
+  /* Paleta simplificada en blanco y negro con grises */
   --white: #ffffff;
-  --licorice: #230903;
-  --ebony: #656256;
-  --sandy-brown: #ee964b;
+  --light-gray: #cccccc;
+  --dark-gray: #333333;
+  --black: #000000;
 
-  --light-gray: #f5f5f5;
+  /* Guardamos los colores originales comentados para referencia futura */
+  /* --marian-blue: #1c398e; */
+  /* --licorice: #230903; */
+  /* --ebony: #656256; */
+  /* --sandy-brown: #ee964b; */
 }
 
 [data-theme='light'] {
   /* Light Theme */
-  --color-primary: var(--white);
-  --color-secondary: var(--sandy-brown);
-  --color-accent: var(--marian-blue);
-  --color-text-base: var(--licorice);
-  --color-text-muted: var(--ebony);
-  --color-text-primary: var(--marian-blue);
-  --color-text-accent: var(--sandy-brown);
-  --color-border: var(--ebony);
-  --color-border-sticker: var(--light-gray);
-  --color-bg-primary: var(--white);
-  --color-bg-secondary: var(--white);
-  --color-bg-accent: var(--sandy-brown);
+  /* Variables para texto (4) */
+  --text-title: var(--black);
+  --text-body: var(--dark-gray);
+  --text-muted: var(--light-gray);
+  --text-inverse: var(--white);
+
+  /* Variables para borde (2) */
+  --border-default: var(--dark-gray);
+  --border-light: var(--light-gray);
+
+  /* Variables para fondos (4) */
+  --bg-main: var(--white);
+  --bg-alt: var(--light-gray);
+  --bg-dark: var(--dark-gray);
+  --bg-accent: var(--black);
 }
 
 [data-theme='dark'] {
-  /* Dark Theme */
-  --color-primary: var(--licorice);
-  --color-secondary: var(--ebony);
-  --color-accent: var(--sandy-brown);
-  --color-text-base: var(--white);
-  --color-text-muted: var(--ebony);
-  --color-text-primary: var(--sandy-brown);
-  --color-text-accent: var(--sandy-brown);
-  --color-border: var(--ebony);
-  --color-border-sticker: var(--ebony);
-  --color-bg-primary: var(--licorice);
-  --color-bg-secondary: var(--marian-blue);
-  --color-bg-accent: var(--marian-blue);
+  /* Dark Theme - Inverso del claro */
+  /* Variables para texto (4) */
+  --text-title: var(--white);
+  --text-body: var(--light-gray);
+  --text-muted: var(--light-gray);
+  --text-inverse: var(--black);
+
+  /* Variables para borde (2) */
+  --border-default: var(--light-gray);
+  --border-light: var(--dark-gray);
+
+  /* Variables para fondos (4) */
+  --bg-main: var(--black);
+  --bg-alt: var(--dark-gray);
+  --bg-dark: var(--light-gray);
+  --bg-accent: var(--white);
 }
 
 @theme {
+  /* Variables heredadas del tema claro por defecto */
   --color-primary: var(--white);
-  --color-secondary: var(--sandy-brown);
-  --color-accent: var(--marian-blue);
-  --color-text-base: var(--licorice);
-  --color-text-muted: var(--ebony);
-  --color-border: var(--ebony);
-  --color-bg-primary: var(--marian-blue);
-  --color-bg-secondary: var(--white);
-  --color-bg-accent: var(--sandy-brown);
+  --color-secondary: var(--dark-gray);
+  --color-accent: var(--black);
+  --color-text-base: var(--text-body);
+  --color-text-muted: var(--text-muted);
+  --color-text-primary: var(--text-title);
+  --color-text-accent: var(--text-title);
+  --color-border: var(--border-default);
+  --color-border-sticker: var(--border-light);
+  --color-bg-primary: var(--bg-main);
+  --color-bg-secondary: var(--bg-alt);
+  --color-bg-accent: var(--bg-dark);
 
   --font-sans: 'Ubuntu', sans-serif;
-  --font-display: 'Gabriela', serif;
+  --font-display: 'Anta', sans-serif;
 
   /* Shadows */
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);

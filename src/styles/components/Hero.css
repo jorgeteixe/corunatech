@@ -17,12 +17,13 @@
 .hero-title {
   font-family: var(--font-display);
   font-size: 3rem;
-  color: var(--color-text-accent);
+  color: var(--text-title);
+  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
   .hero-title {
-    font-size: 4.5rem;
+    font-size: 5rem;
   }
 }
 
@@ -38,9 +39,9 @@
   display: inline-block;
   animation: bounce 1s infinite;
   border-radius: var(--border-radius-full);
-  background-color: var(--color-secondary);
+  background-color: var(--bg-dark);
   padding: 1rem;
-  color: var(--color-text-base);
+  color: var(--text-inverse);
 }
 
 .hero-scroll-icon {

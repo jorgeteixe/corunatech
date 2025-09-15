@@ -1,0 +1,232 @@
+@import '../global.css';
+
+.community-detail {
+  width: 100%;
+}
+
+/* Cabecera de la comunidad */
+.community-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--bg-dark);
+  padding: 5rem 2rem 3rem;
+  position: relative;
+  min-height: 30vh;
+  width: 100%;
+}
+
+/* Contenedor interno del header para limitar el ancho del contenido */
+.community-header-content {
+  max-width: 70rem;
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Contenido principal después del header */
+.community-details,
+.community-events {
+  max-width: 70rem;
+  min-height: 10rem;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .community-header-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.community-logo {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .community-logo {
+    margin: 0;
+    flex-shrink: 0;
+  }
+}
+
+.community-logo img {
+  position: absolute;
+  max-width: 350px;
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+  background-color: var(--bg-main);
+  border: 4px solid var(--bg-dark);
+  display: flex;
+  padding: 1rem;
+}
+
+.community-info {
+  flex: 1;
+}
+
+.community-name {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--text-inverse);
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+}
+
+.community-description {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: var(--text-inverse);
+  margin-bottom: 1.5rem;
+}
+
+.community-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.community-website-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-full);
+  background-color: var(--bg-accent);
+  color: var(--text-inverse);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.community-website-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.community-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-link {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-full);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
+}
+
+.social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Detalles de la comunidad */
+.community-details {
+  gap: 3rem;
+  display: flex;
+}
+
+.community-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.community-tech h3,
+.community-tags h3,
+.meeting-frequency h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-title);
+  font-family: var(--font-display);
+  opacity: 0.85;
+}
+
+.tech-tags,
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-full);
+  background-color: var(--bg-alt);
+  color: var(--text-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.tag.small {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.tech-tag {
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
+}
+
+.community-events h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--text-title);
+  margin-bottom: 2rem;
+  font-family: var(--font-display);
+}
+
+.events-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .events-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .events-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* .past-events .event-card-content {
+  opacity: 0.7;
+} */
+
+/* Estilos para eventos ya no son necesarios aquí ya que usaremos EventCard */
+
+.no-events {
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.past-events {
+  opacity: 0.8;
+}
+
+/* Espacio adicional al final de la página */
+.community-events {
+  margin-bottom: 4rem;
+}

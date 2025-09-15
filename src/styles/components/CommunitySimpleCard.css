@@ -4,7 +4,7 @@
   align-items: center;
   gap: 0.5rem;
   border-radius: 1rem;
-  background-color: var(--color-bg-secondary);
+  background-color: var(--bg-main);
   padding: 1rem;
   text-align: center;
   transition: transform 0.3s;
@@ -23,5 +23,5 @@
 .community-card-name {
   font-weight: 700;
   font-size: 1.25rem;
-  color: var(--color-text-base);
+  color: var(--text-title);
 }

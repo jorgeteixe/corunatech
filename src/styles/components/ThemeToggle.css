@@ -1,12 +1,11 @@
 .theme-toggle {
   padding: 0.5rem;
   border-radius: var(--border-radius-md);
-  color: var(--color-text-base);
   transition: background-color 0.3s;
 }
 
 .theme-toggle:hover {
-  background-color: var(--color-secondary);
+  background-color: var(--bg-accent);
 }
 
 .theme-toggle-icon {

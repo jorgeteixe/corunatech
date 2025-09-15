@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css'
 import '../styles/layouts/BaseLayout.css'
+import Footer from '../components/Footer.astro'
 
 interface Props {
   title?: string
@@ -84,6 +85,6 @@ const imageUrl = `${siteUrl}${image}`
   <body>
     <slot name="header" />
     <slot />
-    <slot name="footer" />
+    <Footer />
   </body>
 </html>

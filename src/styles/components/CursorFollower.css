@@ -4,8 +4,8 @@
   top: 0;
   left: 0;
   transform: translate(0%, 15px); /* Desplazado hacia abajo */
-  background-color: var(--theme-accent);
-  color: var(--theme-bg);
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
   padding: 0.5rem 1rem;
   border-radius: 1.5rem;
   font-size: 0.9rem;
@@ -120,17 +120,17 @@
 
 /* Aseguramos que los colores se apliquen con mayor especificidad */
 .click-sticker.border-color-1 {
-  border-color: var(--marian-blue) !important;
+  border-color: var(--black) !important;
 }
 .click-sticker.border-color-2 {
-  border-color: var(--sandy-brown) !important;
+  border-color: var(--dark-gray) !important;
 }
 .click-sticker.border-color-3 {
-  border-color: var(--licorice) !important;
+  border-color: var(--light-gray) !important;
 }
 .click-sticker.border-color-4 {
-  border-color: var(--ebony) !important;
+  border-color: var(--dark-gray) !important;
 }
 .click-sticker.border-color-5 {
-  border-color: var(--marian-blue) !important;
+  border-color: var(--black) !important;
 }

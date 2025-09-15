@@ -1,10 +1,10 @@
 .event-card {
-  background-color: var(--color-bg-secondary);
+  background-color: var(--bg-main);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
   padding: 1.5rem;
   transition: box-shadow 0.3s;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--border-default);
 }
 
 .event-card:hover {
@@ -26,13 +26,13 @@
 .event-card-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--text-title);
   margin-bottom: 0.25rem;
 }
 
 .event-card-community {
   font-size: 0.875rem;
-  color: var(--color-text-accent);
+  color: var(--text-title);
 }
 
 .event-card-details {
@@ -40,7 +40,7 @@
   flex-direction: column;
   gap: 0.25rem;
   font-size: 0.875rem;
-  color: var(--color-text-muted);
+  color: var(--text-body);
 }
 
 .event-card-detail {
@@ -50,11 +50,11 @@
 }
 
 .event-card-detail-icon {
-  color: var(--color-text-muted);
+  color: var(--text-muted);
 }
 
 .event-card-description {
-  color: var(--color-text-muted);
+  color: var(--text-body);
   font-size: 0.875rem;
   overflow: hidden;
   display: -webkit-box;
@@ -70,8 +70,8 @@
 
 .event-card-tag {
   padding: 0.25rem 0.5rem;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-accent);
+  background-color: var(--bg-alt);
+  color: var(--text-body);
   font-size: 0.75rem;
   border-radius: var(--border-radius-full);
 }
@@ -80,13 +80,13 @@
   display: flex;
   justify-content: flex-end;
   padding-top: 0.5rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--border-light);
 }
 
 .event-card-rsvp-link {
   padding: 0.5rem 1rem;
-  background-color: var(--color-bg-accent);
-  color: var(--color-text-base);
+  background-color: var(--bg-accent);
+  color: var(--text-inverse);
   font-size: 0.875rem;
   border-radius: var(--border-radius-lg);
   font-weight: 500;
@@ -94,5 +94,5 @@
 }
 
 .event-card-rsvp-link:hover {
-  background-color: var(--color-bg-accent) opacity(0.8);
+  opacity: 0.8;
 }

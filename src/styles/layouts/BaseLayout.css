@@ -5,8 +5,8 @@ html {
 body {
   height: 100%;
   font-family: var(--font-sans);
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-base);
+  background-color: var(--bg-main);
+  color: var(--text-body);
   margin: 0;
   padding: 0;
   box-sizing: border-box;

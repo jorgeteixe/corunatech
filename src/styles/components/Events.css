@@ -3,9 +3,8 @@
 }
 
 .events-container {
-  max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 3rem;
 }
 
 .events-group {
@@ -15,7 +14,7 @@
 .events-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--text-title);
   margin-bottom: 2rem;
 }
 
@@ -43,6 +42,6 @@
 }
 
 .events-empty-text {
-  color: var(--color-text-muted);
+  color: var(--text-muted);
   font-size: 1.125rem;
 }

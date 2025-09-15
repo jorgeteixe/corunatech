@@ -3,31 +3,31 @@
 }
 
 .communities-container {
-  max-width: 100rem;
   margin: 0 auto;
-  background-color: var(--color-bg-accent);
+  background-color: var(--bg-dark);
   border-radius: 1rem;
   padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .communities-header {
   text-align: left;
-  margin-bottom: 3rem;
 }
 
 .communities-title {
   font-size: 3rem;
   line-height: 1;
   font-weight: 700;
-  color: var(--color-text-primary);
-  margin-bottom: 1rem;
+  color: var(--text-inverse);
   font-family: var(--font-display);
 }
 
 .communities-subtitle {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  color: var(--color-text-primary);
+  color: var(--text-muted);
   max-width: 48rem;
   margin: 0;
 }
@@ -56,7 +56,7 @@
 }
 
 .communities-empty-text {
-  color: var(--color-text-secondary);
+  color: var(--text-muted);
   font-size: 1.125rem;
   line-height: 1.75rem;
 }

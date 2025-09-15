@@ -1,6 +1,5 @@
 .social-networks-section {
   padding: 3rem;
-  max-width: 100rem;
   margin: 0 auto;
 }
 
@@ -15,7 +14,7 @@
   font-size: 3.5rem;
   line-height: 1.2;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--text-title);
   margin-bottom: 0.5rem;
   font-family: var(--font-display);
   text-align: center;
@@ -25,7 +24,7 @@
   font-size: 2.5rem;
   line-height: 1;
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--text-title);
   margin-bottom: 2rem;
   font-family: var(--font-display);
   text-align: center;
@@ -55,8 +54,8 @@
 }
 
 .social-button.x {
-  background-color: var(--licorice);
-  color: var(--white);
+  background-color: var(--bg-accent);
+  color: var(--text-inverse);
 }
 
 .social-button:hover {
@@ -89,17 +88,18 @@
 }
 
 .image-placeholder.orange {
-  background-color: var(--color-bg-accent);
+  background-color: var(--bg-dark);
 }
 
 .image-placeholder.blue {
-  background-color: var(--color-accent);
+  background-color: var(--bg-alt);
 }
 
 .placeholder-text {
-  color: var(--white);
+  color: var(--text-inverse);
   font-weight: bold;
   font-size: 1.25rem;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .social-networks-image.large-image {
