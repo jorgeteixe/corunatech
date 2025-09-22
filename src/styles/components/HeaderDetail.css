@@ -17,12 +17,6 @@
   align-items: center;
 }
 
-.header-detail-logo {
-  height: auto;
-  width: auto;
-  max-height: 40px;
-}
-
 .header-detail-right {
   display: flex;
   align-items: center;

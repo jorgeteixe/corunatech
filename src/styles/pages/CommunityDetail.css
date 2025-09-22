@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 2rem;
   background-color: var(--bg-dark);
-  padding: 5rem 2rem 3rem;
+  padding: 2rem 0rem;
   position: relative;
   min-height: 30vh;
   width: 100%;
