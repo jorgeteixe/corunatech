@@ -5,6 +5,8 @@
   padding: 1.5rem;
   transition: box-shadow 0.3s;
   border: 1px solid var(--border-default);
+  height: 100%;
+  display: flex;
 }
 
 .event-card:hover {
@@ -15,6 +17,19 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+}
+
+.event-card-top {
+  flex-shrink: 0;
+}
+
+.event-card-middle {
+  flex-grow: 1;
+}
+
+.event-card-bottom {
+  margin-top: auto;
 }
 
 .event-card-header {
@@ -66,6 +81,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  padding: 0.5rem 0;
 }
 
 .event-card-tag {

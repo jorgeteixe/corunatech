@@ -52,14 +52,18 @@ const pastEvents = allEvents
       <h2 class="events-title">Eventos Pasados</h2>
       {
         pastEvents.length > 0 ? (
-          <div class="events-grid">
-            {pastEvents.map(event => (
-              <EventCard
-                {...event.data}
-                slug={event.id}
-                communityName={communityMap.get(event.data.community)}
-              />
-            ))}
+          <div class="events-grid past-events">
+            {pastEvents.map(event => {
+              // Omitir rsvpLink para eventos pasados
+              const { rsvpLink, ...eventDataWithoutRSVP } = event.data
+              return (
+                <EventCard
+                  {...eventDataWithoutRSVP}
+                  slug={event.id}
+                  communityName={communityMap.get(event.data.community)}
+                />
+              )
+            })}
           </div>
         ) : (
           <div class="events-empty">

@@ -49,60 +49,68 @@ const formatTime = (date: Date) => {
 
 <div class="event-card">
   <div class="event-card-content">
-    <!-- Header -->
-    <div class="event-card-header">
-      <div>
-        <h3 class="event-card-title">{title}</h3>
-        <p class="event-card-community">{communityName || community}</p>
+    <!-- Parte superior: header e información -->
+    <div class="event-card-top">
+      <!-- Header -->
+      <div class="event-card-header">
+        <div>
+          <h3 class="event-card-title">{title}</h3>
+          <p class="event-card-community">{communityName || community}</p>
+        </div>
+      </div>
+
+      <!-- Date and Time -->
+      <div class="event-card-details">
+        <p class="event-card-detail">
+          <span class="event-card-detail-icon">📅</span>
+          {formatDate(date)}
+        </p>
+        {
+          duration && (
+            <p class="event-card-detail">
+              <span class="event-card-detail-icon">⏱️</span>
+              Duración: {duration}
+            </p>
+          )
+        }
+        {
+          location && (
+            <p class="event-card-detail">
+              <span class="event-card-detail-icon">📍</span>
+              {location}
+            </p>
+          )
+        }
       </div>
     </div>
 
-    <!-- Date and Time -->
-    <div class="event-card-details">
-      <p class="event-card-detail">
-        <span class="event-card-detail-icon">📅</span>
-        {formatDate(date)}
-      </p>
+    <!-- Parte media: descripción -->
+    <div class="event-card-middle">
+      <p class="event-card-description">{description}</p>
+    </div>
+
+    <!-- Parte inferior: tags y botón -->
+    <div class="event-card-bottom">
+      <!-- Tags -->
+      <div class="event-card-tags">
+        {tags.map(tag => <span class="event-card-tag">{tag}</span>)}
+      </div>
+
+      <!-- Footer - Mostrar botón solo si hay rsvpLink y la fecha es futura -->
       {
-        duration && (
-          <p class="event-card-detail">
-            <span class="event-card-detail-icon">⏱️</span>
-            Duración: {duration}
-          </p>
-        )
-      }
-      {
-        location && (
-          <p class="event-card-detail">
-            <span class="event-card-detail-icon">📍</span>
-            {location}
-          </p>
+        rsvpLink && new Date(date) > new Date() && (
+          <div class="event-card-footer">
+            <a
+              href={rsvpLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="event-card-rsvp-link"
+            >
+              Apuntarse →
+            </a>
+          </div>
         )
       }
     </div>
-
-    <!-- Description -->
-    <p class="event-card-description">{description}</p>
-
-    <!-- Tags -->
-    <div class="event-card-tags">
-      {tags.map(tag => <span class="event-card-tag">{tag}</span>)}
-    </div>
-
-    <!-- Footer -->
-    {
-      rsvpLink && (
-        <div class="event-card-footer">
-          <a
-            href={rsvpLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="event-card-rsvp-link"
-          >
-            Apuntarse →
-          </a>
-        </div>
-      )
-    }
   </div>
 </div>
