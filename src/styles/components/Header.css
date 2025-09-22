@@ -37,11 +37,6 @@
   justify-self: center;
 }
 
-.header-logo {
-  height: auto;
-  width: auto;
-}
-
 .header-right {
   display: flex;
   flex-direction: row;
