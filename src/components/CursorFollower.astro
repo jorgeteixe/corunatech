@@ -25,10 +25,21 @@ const communityLogos = communities.map(community => community.data.logo)
       let cursorY = 0
       let followerX = 0
       let followerY = 0
+      let isOverSlider = false
+
+      function checkIfOverSlider(e) {
+        const target = e.target
+        isOverSlider = !!target.closest('.events-section')
+
+        if (follower) {
+          follower.style.opacity = isOverSlider ? '0' : '1'
+        }
+      }
 
       document.addEventListener('mousemove', e => {
         cursorX = e.clientX
         cursorY = e.clientY
+        checkIfOverSlider(e)
       })
 
       function updateFollowerPosition() {
@@ -50,7 +61,7 @@ const communityLogos = communities.map(community => community.data.logo)
 
         if (follower) {
           const textSpan = follower.querySelector('.cursor-text')
-          if (textSpan) {
+          if (textSpan && !isOverSlider) {
             textSpan.textContent = 'click!'
 
             setTimeout(() => {
@@ -59,7 +70,8 @@ const communityLogos = communities.map(community => community.data.logo)
           }
         }
 
-        if (target.closest('a, button')) {
+        // No crear pegatinas si estamos sobre el slider o sobre elementos interactivos
+        if (target.closest('a, button') || isOverSlider) {
           return
         }
 
