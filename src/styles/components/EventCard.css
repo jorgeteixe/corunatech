@@ -3,14 +3,17 @@
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-md);
   padding: 1.5rem;
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, transform 0.15s ease;
   border: 1px solid var(--border-default);
   height: 100%;
   display: flex;
+  will-change: transform;
 }
 
 .event-card:hover {
+  border-color: var(--border-accent);
   box-shadow: var(--shadow-lg);
+  transform: scale(1.03);
 }
 
 .event-card-content {
@@ -22,6 +25,9 @@
 
 .event-card-top {
   flex-shrink: 0;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .event-card-middle {
@@ -86,7 +92,7 @@
 
 .event-card-tag {
   padding: 0.25rem 0.5rem;
-  background-color: var(--bg-alt);
+  border: 1px solid var(--bg-alt);
   color: var(--text-body);
   font-size: 0.75rem;
   border-radius: var(--border-radius-full);

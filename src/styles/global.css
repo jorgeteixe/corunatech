@@ -5,7 +5,10 @@
   /* Paleta simplificada en blanco y negro con grises */
   --white: #ffffff;
   --light-gray: #cccccc;
+  --medium-gray: #939393;
   --dark-gray: #333333;
+  --light-blue: #377ebb;
+  --dark-blue: #004a8a;
   --black: #000000;
 
   /* Guardamos los colores originales comentados para referencia futura */
@@ -18,7 +21,7 @@
 [data-theme='light'] {
   /* Light Theme */
   /* Variables para texto (4) */
-  --text-title: var(--black);
+  --text-title: var(--dark-blue);
   --text-body: var(--dark-gray);
   --text-muted: var(--light-gray);
   --text-inverse: var(--white);
@@ -26,12 +29,19 @@
   /* Variables para borde (2) */
   --border-default: var(--dark-gray);
   --border-light: var(--light-gray);
+  --border-accent: var(--light-blue);
 
   /* Variables para fondos (4) */
   --bg-main: var(--white);
   --bg-alt: var(--light-gray);
   --bg-dark: var(--dark-gray);
-  --bg-accent: var(--black);
+  --bg-accent: var(--light-blue);
+
+  --logo-primary: var(--dark-blue);
+  --logo-secondary: var(--light-blue);
+
+  --logo-primary-inverse: var(--white);
+  --logo-secondary-inverse: var(--light-gray);
 }
 
 [data-theme='dark'] {
@@ -45,12 +55,19 @@
   /* Variables para borde (2) */
   --border-default: var(--light-gray);
   --border-light: var(--dark-gray);
+  --border-accent: var(--light-blue);
 
   /* Variables para fondos (4) */
   --bg-main: var(--black);
   --bg-alt: var(--dark-gray);
-  --bg-dark: var(--light-gray);
+  --bg-dark: var(--medium-gray);
   --bg-accent: var(--white);
+
+  --logo-primary: var(--white);
+  --logo-secondary: var(--white);
+
+  --logo-primary-inverse: var(--dark-gray);
+  --logo-secondary-inverse: var(--black);
 }
 
 @theme {

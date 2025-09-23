@@ -4,7 +4,7 @@
 
 .communities-container {
   margin: 0 auto;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-accent);
   border-radius: 1rem;
   padding: 3rem;
   display: flex;
@@ -27,7 +27,7 @@
 .communities-subtitle {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  color: var(--text-muted);
+  color: var(--text-body);
   max-width: 48rem;
   margin: 0;
 }

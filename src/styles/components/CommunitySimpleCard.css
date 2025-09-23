@@ -18,10 +18,13 @@
   width: 6rem;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  background: var(--white);
+  padding: 0.2rem;
+  border-radius: 0.6rem;
 }
 
 .community-card-name {
   font-weight: 700;
   font-size: 1.25rem;
-  color: var(--text-title);
+  color: var(--text-body);
 }

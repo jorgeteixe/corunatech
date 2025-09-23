@@ -1,6 +1,5 @@
 ---
-import { Image } from 'astro:assets'
-import corunaTechLogo from '../assets/logo.svg'
+import corunaTechLogo from '../assets/logo.svg?raw'
 import ThemeToggle from './ThemeToggle.astro'
 import ClearStickersButton from './ClearStickersButton.astro'
 import '../styles/components/Header.css'
@@ -17,17 +16,10 @@ import '../styles/components/Header.css'
     aria-label="home"
     class="header-logo-link"
   >
-    <Image
-      src={corunaTechLogo}
-      alt="Coruna Tech Logo"
-      height={180}
-      class="header-logo"
-    />
+    <div class="header-logo" set:html={corunaTechLogo} />
   </a>
   <div class="header-right">
-    <div class="header-theme-toggle">
-      <ThemeToggle />
-    </div>
+    <ThemeToggle />
     <ClearStickersButton />
   </div>
 </header>

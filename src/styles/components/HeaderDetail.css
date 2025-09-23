@@ -10,11 +10,19 @@
   padding: 1rem 2rem;
   background-color: var(--bg-dark);
   color: var(--text-inverse);
+
+  --logo-primary: var(--logo-primary-inverse);
+  --logo-secondary: var(--logo-secondary-inverse);
 }
 
 .header-detail-logo-link {
   display: flex;
   align-items: center;
+}
+
+.header-detail-logo {
+  width: 5rem;
+  height: auto;
 }
 
 .header-detail-right {
