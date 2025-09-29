@@ -2,7 +2,11 @@
 import '../styles/components/ThemeToggle.css'
 ---
 
-<button id="theme-toggle" class="theme-toggle">
+<button
+  id="theme-toggle"
+  class="theme-toggle"
+  data-cursor-message="estamos traballando niso"
+>
   <svg
     xmlns="http://www.w3.org/2000/svg"
     class="theme-toggle-icon"
@@ -21,9 +25,25 @@ import '../styles/components/ThemeToggle.css'
 
 <script>
   const toggleButton = document.getElementById('theme-toggle')
+  let isHovering = false
 
   if (toggleButton) {
-    toggleButton.addEventListener('click', () => {
+    // Detectar cuando el cursor entra y sale del botón
+    toggleButton.addEventListener('mouseenter', () => {
+      isHovering = true
+    })
+
+    toggleButton.addEventListener('mouseleave', () => {
+      isHovering = false
+    })
+
+    toggleButton.addEventListener('click', e => {
+      // Solo funcionar si no estamos en modo hover
+      if (isHovering) {
+        e.preventDefault()
+        return
+      }
+
       const currentTheme = document.documentElement.dataset.theme
       console.log({ currentTheme })
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark'

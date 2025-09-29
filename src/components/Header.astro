@@ -6,10 +6,16 @@ import '../styles/components/Header.css'
 ---
 
 <header class="header">
-  <nav class="header-nav">
-    <a href="#comunidades" class="header-nav-link"> Comunidades </a>
-    <a href="#eventos" class="header-nav-link"> Eventos </a>
-  </nav>
+  <div class="header-top">
+    <nav class="header-nav">
+      <a href="#comunidades" class="header-nav-link"> Comunidades </a>
+      <a href="#eventos" class="header-nav-link"> Eventos </a>
+    </nav>
+    <div class="header-right">
+      <ThemeToggle />
+      <ClearStickersButton />
+    </div>
+  </div>
   <a
     href="/corunatech"
     aria-current="page"
@@ -18,8 +24,4 @@ import '../styles/components/Header.css'
   >
     <div class="header-logo" set:html={corunaTechLogo} />
   </a>
-  <div class="header-right">
-    <ThemeToggle />
-    <ClearStickersButton />
-  </div>
 </header>

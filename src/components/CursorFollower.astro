@@ -26,10 +26,27 @@ const communityLogos = communities.map(community => community.data.logo)
       let followerX = 0
       let followerY = 0
       let isOverSlider = false
+      let isOverSpecialButton = false
 
       function checkIfOverSlider(e) {
         const target = e.target
         isOverSlider = !!target.closest('.events-section')
+
+        // Verificar si estamos sobre un botón especial con mensaje
+        const specialButton = target.closest('[data-cursor-message]')
+        const textSpan = follower.querySelector('.cursor-text')
+
+        if (specialButton) {
+          isOverSpecialButton = true
+          if (textSpan) {
+            textSpan.textContent = specialButton.dataset.cursorMessage
+          }
+        } else if (isOverSpecialButton) {
+          isOverSpecialButton = false
+          if (textSpan) {
+            textSpan.textContent = 'click'
+          }
+        }
 
         if (follower) {
           follower.style.opacity = isOverSlider ? '0' : '1'
@@ -47,8 +64,37 @@ const communityLogos = communities.map(community => community.data.logo)
         followerY += (cursorY - followerY) * 0.1
 
         if (follower) {
-          follower.style.left = `${followerX}px`
-          follower.style.top = `${followerY}px`
+          // Obtener dimensiones del elemento y la ventana
+          const followerRect = follower.getBoundingClientRect()
+          const windowWidth = window.innerWidth
+          const windowHeight = window.innerHeight
+
+          // Calcular posición ajustada para que no se salga de la pantalla
+          let adjustedX = followerX
+          let adjustedY = followerY
+
+          // Ajustar posición X para evitar que se salga por la derecha
+          if (followerX + followerRect.width > windowWidth) {
+            adjustedX = windowWidth - followerRect.width - 10 // 10px de margen
+          }
+
+          // Ajustar posición X para evitar que se salga por la izquierda
+          if (followerX < 0) {
+            adjustedX = 10 // 10px de margen
+          }
+
+          // Ajustar posición Y para evitar que se salga por abajo
+          if (followerY + followerRect.height > windowHeight) {
+            adjustedY = windowHeight - followerRect.height - 10 // 10px de margen
+          }
+
+          // Ajustar posición Y para evitar que se salga por arriba
+          if (followerY < 0) {
+            adjustedY = 10 // 10px de margen
+          }
+
+          follower.style.left = `${adjustedX}px`
+          follower.style.top = `${adjustedY}px`
         }
 
         requestAnimationFrame(updateFollowerPosition)

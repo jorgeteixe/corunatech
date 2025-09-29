@@ -108,22 +108,18 @@ html {
   --spacing-container: 3rem;
   --spacing-element: 1.5rem;
 
-  /* Typography Responsive */
-  --text-size-hero: 3.5rem;
-  --text-size-title: 3rem;
-  --text-size-subtitle: 1.25rem;
+  /* Typography Responsive - Mobile first */
+  --text-size-hero: 2.5rem;
+  --text-size-title: 2rem;
+  --text-size-subtitle: 1.1rem;
 }
 
-/* Mobile Responsive Variables */
-@media (max-width: 767px) {
+/* Desktop Responsive Variables */
+@media (min-width: 768px) {
   @theme {
-    --spacing-section: 2rem;
-    --spacing-container: 1.5rem;
-    --spacing-element: 1rem;
-
-    --text-size-hero: 2.5rem;
-    --text-size-title: 2rem;
-    --text-size-subtitle: 1.1rem;
+    --text-size-hero: 5rem;
+    --text-size-title: 2.5rem;
+    --text-size-subtitle: 1.5rem;
   }
 }
 
@@ -159,4 +155,71 @@ html {
     drop-shadow(0px 3px 0 var(--color-border-sticker))
     drop-shadow(0px -3px 0 var(--color-border-sticker))
     drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* ===== EFECTOS IRIDISCENTES REUTILIZABLES ===== */
+
+/* Gradiente base iridiscente con colores pastel suaves */
+.iridescent-gradient {
+  background: linear-gradient(
+    48deg,
+    #e3c1f4,
+    /* Lavanda suave */ #d9d7ed,
+    /* Gris perla */ #dff7f1,
+    /* Verde menta */ #acf0ff,
+    /* Azul cielo */ #e3c1f4,
+    /* Lavanda (repetido para continuidad) */ #d9d7ed,
+    /* Gris perla */ #dff7f1,
+    /* Verde menta */ #acf0ff,
+    /* Azul cielo */ #e3c1f4 /* Lavanda final */
+  );
+  background-size: 200% 200%;
+}
+
+/* Animación suave del gradiente iridiscente */
+.iridescent-animated {
+  animation: iridescent-foil 8s ease infinite;
+}
+
+/* Keyframes para el efecto foil iridiscente */
+@keyframes iridescent-foil {
+  0% {
+    background-position: 84% 0;
+  }
+  50% {
+    background-position: 17% 100%;
+  }
+  100% {
+    background-position: 84% 0;
+  }
+}
+
+/* Clase combinada para aplicar ambos efectos de una vez */
+.iridescent-effect {
+  background: linear-gradient(
+    48deg,
+    #e3c1f4,
+    #d9d7ed,
+    #dff7f1,
+    #acf0ff,
+    #e3c1f4,
+    #d9d7ed,
+    #dff7f1,
+    #acf0ff,
+    #e3c1f4
+  );
+  background-size: 200% 200%;
+  animation: iridescent-foil 8s ease infinite;
+}
+
+/* Estilo base para stickers con efecto iridiscente */
+.sticker-iridescent {
+  position: relative;
+  border-radius: 50%;
+  border: 4px solid var(--black);
+  box-shadow: 0 0 0 6px white, 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.15));
 }

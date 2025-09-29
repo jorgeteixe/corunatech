@@ -6,6 +6,7 @@ import '../styles/components/ClearStickersButton.css'
   id="clear-stickers-button"
   class="clear-stickers-button"
   title="Limpiar pegatinas"
+  data-cursor-message="limpeza de adhesivos"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -46,8 +47,20 @@ import '../styles/components/ClearStickersButton.css'
 
 <script>
   const clearButton = document.getElementById('clear-stickers-button')
+  let isHovering = false
+
   if (clearButton) {
-    clearButton.addEventListener('click', () => {
+    // Detectar cuando el cursor entra y sale del botón
+    clearButton.addEventListener('mouseenter', () => {
+      isHovering = true
+    })
+
+    clearButton.addEventListener('mouseleave', () => {
+      isHovering = false
+    })
+
+    clearButton.addEventListener('click', e => {
+      // El botón de limpiar stickers siempre debe funcionar
       document.dispatchEvent(new CustomEvent('clear-stickers'))
     })
   }
