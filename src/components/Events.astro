@@ -1,5 +1,6 @@
 ---
 import EventCard from './EventCard.astro'
+import MonthlyCalendar from './MonthlyCalendar.astro'
 import { getCollection } from 'astro:content'
 import '../styles/components/Events.css'
 
@@ -7,6 +8,7 @@ import '../styles/components/Events.css'
 const allEvents = await getCollection('events')
 const communities = await getCollection('communities')
 const communityMap = new Map(communities.map(c => [c.id, c.data.name]))
+const communityNames = Object.fromEntries(communityMap)
 
 // Current date for comparison (build time)
 const now = new Date()
@@ -26,6 +28,7 @@ const pastEvents = allEvents
     <!-- Future Events -->
     <div class="events-group">
       <h2 class="events-title">Próximos Eventos</h2>
+      <MonthlyCalendar events={allEvents} communityNames={communityNames} />
       {
         futureEvents.length > 0 ? (
           <div class="events-grid">
@@ -33,7 +36,7 @@ const pastEvents = allEvents
               <EventCard
                 {...event.data}
                 slug={event.id}
-                communityName={communityMap.get(event.data.community)}
+                communityName={communityNames[event.data.community]}
               />
             ))}
           </div>
@@ -60,7 +63,7 @@ const pastEvents = allEvents
                 <EventCard
                   {...eventDataWithoutRSVP}
                   slug={event.id}
-                  communityName={communityMap.get(event.data.community)}
+                  communityName={communityNames[event.data.community]}
                 />
               )
             })}
