@@ -409,75 +409,11 @@ const weekdayLabels = Array.from({ length: 7 }, (_, index) =>
                                 class="calendar-event"
                                 data-calendar-community={event.community}
                                 title={`${event.title} • ${event.timeLabel}`}
-                                aria-haspopup="true"
                               >
                                 <span class="calendar-event-title">
                                   {event.communityName} • {event.timeLabel}
                                 </span>
                               </a>
-                              <div
-                                class="calendar-event-tooltip"
-                                role="presentation"
-                              >
-                                <div class="calendar-tooltip-card">
-                                  <div class="calendar-tooltip-header">
-                                    <h3 class="calendar-tooltip-title">
-                                      {event.title}
-                                    </h3>
-                                    <p class="calendar-tooltip-community">
-                                      {event.communityName}
-                                    </p>
-                                  </div>
-                                  <div class="calendar-tooltip-details">
-                                    <p class="calendar-tooltip-detail">
-                                      <span class="calendar-tooltip-icon">
-                                        📅
-                                      </span>
-                                      {event.dateLabel}
-                                    </p>
-                                    {event.duration && (
-                                      <p class="calendar-tooltip-detail">
-                                        <span class="calendar-tooltip-icon">
-                                          ⏱️
-                                        </span>
-                                        {event.duration}
-                                      </p>
-                                    )}
-                                    {event.location && (
-                                      <p class="calendar-tooltip-detail">
-                                        <span class="calendar-tooltip-icon">
-                                          📍
-                                        </span>
-                                        {event.location}
-                                      </p>
-                                    )}
-                                  </div>
-                                  <p class="calendar-tooltip-description">
-                                    {event.description}
-                                  </p>
-                                  {event.tags.length > 0 && (
-                                    <div class="calendar-tooltip-tags">
-                                      {event.tags.map(tag => (
-                                        <span class="calendar-tooltip-tag">
-                                          {tag}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  )}
-                                  {event.isFuture && event.rsvpLink && (
-                                    <div class="calendar-tooltip-footer">
-                                      <a
-                                        href={event.rsvpLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="calendar-tooltip-link"
-                                      >
-                                        Apuntarse →
-                                      </a>
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
                             </div>
                           ))}
                           {overflow > 0 && (
@@ -489,73 +425,6 @@ const weekdayLabels = Array.from({ length: 7 }, (_, index) =>
                               >
                                 +{overflow}
                               </button>
-                              <div
-                                class="calendar-event-tooltip"
-                                role="presentation"
-                              >
-                                <div class="calendar-tooltip-card calendar-tooltip-multi">
-                                  {overflowItems.map(extra => (
-                                    <div class="calendar-tooltip-multi-item">
-                                      <div class="calendar-tooltip-header">
-                                        <h3 class="calendar-tooltip-title">
-                                          {extra.title}
-                                        </h3>
-                                        <p class="calendar-tooltip-community">
-                                          {extra.communityName}
-                                        </p>
-                                      </div>
-                                      <div class="calendar-tooltip-details">
-                                        <p class="calendar-tooltip-detail">
-                                          <span class="calendar-tooltip-icon">
-                                            📅
-                                          </span>
-                                          {extra.dateLabel}
-                                        </p>
-                                        {extra.duration && (
-                                          <p class="calendar-tooltip-detail">
-                                            <span class="calendar-tooltip-icon">
-                                              ⏱️
-                                            </span>
-                                            {extra.duration}
-                                          </p>
-                                        )}
-                                        {extra.location && (
-                                          <p class="calendar-tooltip-detail">
-                                            <span class="calendar-tooltip-icon">
-                                              📍
-                                            </span>
-                                            {extra.location}
-                                          </p>
-                                        )}
-                                      </div>
-                                      <p class="calendar-tooltip-description">
-                                        {extra.description}
-                                      </p>
-                                      {extra.tags.length > 0 && (
-                                        <div class="calendar-tooltip-tags">
-                                          {extra.tags.map(tag => (
-                                            <span class="calendar-tooltip-tag">
-                                              {tag}
-                                            </span>
-                                          ))}
-                                        </div>
-                                      )}
-                                      {extra.isFuture && extra.rsvpLink && (
-                                        <div class="calendar-tooltip-footer">
-                                          <a
-                                            href={extra.rsvpLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            class="calendar-tooltip-link"
-                                          >
-                                            Apuntarse →
-                                          </a>
-                                        </div>
-                                      )}
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
                             </div>
                           )}
                         </div>
@@ -633,75 +502,11 @@ const weekdayLabels = Array.from({ length: 7 }, (_, index) =>
                                   class="calendar-event"
                                   data-calendar-community={event.community}
                                   title={`${event.title} • ${event.timeLabel}`}
-                                  aria-haspopup="true"
                                 >
                                   <span class="calendar-event-title">
                                     {event.communityName} • {event.timeLabel}
                                   </span>
                                 </a>
-                                <div
-                                  class="calendar-event-tooltip"
-                                  role="presentation"
-                                >
-                                  <div class="calendar-tooltip-card">
-                                    <div class="calendar-tooltip-header">
-                                      <h3 class="calendar-tooltip-title">
-                                        {event.title}
-                                      </h3>
-                                      <p class="calendar-tooltip-community">
-                                        {event.communityName}
-                                      </p>
-                                    </div>
-                                    <div class="calendar-tooltip-details">
-                                      <p class="calendar-tooltip-detail">
-                                        <span class="calendar-tooltip-icon">
-                                          📅
-                                        </span>
-                                        {event.dateLabel}
-                                      </p>
-                                      {event.duration && (
-                                        <p class="calendar-tooltip-detail">
-                                          <span class="calendar-tooltip-icon">
-                                            ⏱️
-                                          </span>
-                                          {event.duration}
-                                        </p>
-                                      )}
-                                      {event.location && (
-                                        <p class="calendar-tooltip-detail">
-                                          <span class="calendar-tooltip-icon">
-                                            📍
-                                          </span>
-                                          {event.location}
-                                        </p>
-                                      )}
-                                    </div>
-                                    <p class="calendar-tooltip-description">
-                                      {event.description}
-                                    </p>
-                                    {event.tags.length > 0 && (
-                                      <div class="calendar-tooltip-tags">
-                                        {event.tags.map(tag => (
-                                          <span class="calendar-tooltip-tag">
-                                            {tag}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    )}
-                                    {event.isFuture && event.rsvpLink && (
-                                      <div class="calendar-tooltip-footer">
-                                        <a
-                                          href={event.rsvpLink}
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          class="calendar-tooltip-link"
-                                        >
-                                          Apuntarse →
-                                        </a>
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
                               </div>
                             ))}
                             {overflow > 0 && (
@@ -713,73 +518,6 @@ const weekdayLabels = Array.from({ length: 7 }, (_, index) =>
                                 >
                                   +{overflow}
                                 </button>
-                                <div
-                                  class="calendar-event-tooltip"
-                                  role="presentation"
-                                >
-                                  <div class="calendar-tooltip-card calendar-tooltip-multi">
-                                    {overflowItems.map(extra => (
-                                      <div class="calendar-tooltip-multi-item">
-                                        <div class="calendar-tooltip-header">
-                                          <h3 class="calendar-tooltip-title">
-                                            {extra.title}
-                                          </h3>
-                                          <p class="calendar-tooltip-community">
-                                            {extra.communityName}
-                                          </p>
-                                        </div>
-                                        <div class="calendar-tooltip-details">
-                                          <p class="calendar-tooltip-detail">
-                                            <span class="calendar-tooltip-icon">
-                                              📅
-                                            </span>
-                                            {extra.dateLabel}
-                                          </p>
-                                          {extra.duration && (
-                                            <p class="calendar-tooltip-detail">
-                                              <span class="calendar-tooltip-icon">
-                                                ⏱️
-                                              </span>
-                                              {extra.duration}
-                                            </p>
-                                          )}
-                                          {extra.location && (
-                                            <p class="calendar-tooltip-detail">
-                                              <span class="calendar-tooltip-icon">
-                                                📍
-                                              </span>
-                                              {extra.location}
-                                            </p>
-                                          )}
-                                        </div>
-                                        <p class="calendar-tooltip-description">
-                                          {extra.description}
-                                        </p>
-                                        {extra.tags.length > 0 && (
-                                          <div class="calendar-tooltip-tags">
-                                            {extra.tags.map(tag => (
-                                              <span class="calendar-tooltip-tag">
-                                                {tag}
-                                              </span>
-                                            ))}
-                                          </div>
-                                        )}
-                                        {extra.isFuture && extra.rsvpLink && (
-                                          <div class="calendar-tooltip-footer">
-                                            <a
-                                              href={extra.rsvpLink}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                              class="calendar-tooltip-link"
-                                            >
-                                              Apuntarse →
-                                            </a>
-                                          </div>
-                                        )}
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
                               </div>
                             )}
                           </div>
