@@ -23,7 +23,7 @@ const pastEvents = allEvents
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 ---
 
-<section class="events-section">
+<section class="events-section" id="eventos">
   <div class="events-container">
     <MonthlyCalendar events={allEvents} communityNames={communityNames} />
   </div>
