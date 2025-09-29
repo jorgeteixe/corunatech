@@ -25,57 +25,6 @@ const pastEvents = allEvents
 
 <section class="events-section">
   <div class="events-container">
-    <!-- Future Events -->
-    <div class="events-group">
-      <h2 class="events-title">Próximos Eventos</h2>
-      <MonthlyCalendar events={allEvents} communityNames={communityNames} />
-      {
-        futureEvents.length > 0 ? (
-          <div class="events-grid">
-            {futureEvents.map(event => (
-              <EventCard
-                {...event.data}
-                slug={event.id}
-                communityName={communityNames[event.data.community]}
-              />
-            ))}
-          </div>
-        ) : (
-          <div class="events-empty">
-            <p class="events-empty-text">
-              Non hai eventos próximos programados.
-            </p>
-          </div>
-        )
-      }
-    </div>
-
-    <!-- Past Events -->
-    <div>
-      <h2 class="events-title">Eventos Pasados</h2>
-      {
-        pastEvents.length > 0 ? (
-          <div class="events-grid past-events">
-            {pastEvents.map(event => {
-              // Omitir rsvpLink para eventos pasados
-              const { rsvpLink, ...eventDataWithoutRSVP } = event.data
-              return (
-                <EventCard
-                  {...eventDataWithoutRSVP}
-                  slug={event.id}
-                  communityName={communityNames[event.data.community]}
-                />
-              )
-            })}
-          </div>
-        ) : (
-          <div class="events-empty">
-            <p class="events-empty-text">
-              Non hai eventos pasados rexistrados.
-            </p>
-          </div>
-        )
-      }
-    </div>
+    <MonthlyCalendar events={allEvents} communityNames={communityNames} />
   </div>
 </section>

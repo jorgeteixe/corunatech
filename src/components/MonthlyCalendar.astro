@@ -325,34 +325,37 @@ const weekdayLabels = Array.from({ length: 7 }, (_, index) =>
   data-initial-month-index={initialMonthIndex}
   data-initial-week-index={initialWeekIndex}
 >
-  <div class="calendar-nav">
-    <button
-      type="button"
-      class="calendar-nav-button"
-      data-action="prev"
-      aria-label="Anterior"
-    >
-      <span aria-hidden="true">‹</span>
-    </button>
-    <div class="calendar-nav-current">
-      <span class="calendar-nav-label" data-calendar-label>
-        {
-          months[initialMonthIndex]?.navLabel ??
-            allWeeks[initialWeekIndex]?.navLabel ??
-            ''
-        }
-      </span>
-    </div>
-    <button
-      type="button"
-      class="calendar-nav-button"
-      data-action="next"
-      aria-label="Seguinte"
-    >
-      <span aria-hidden="true">›</span>
-    </button>
-  </div>
+  <div class="calendar-header">
+    <h2 class="events-title">Próximos Eventos</h2>
 
+    <div class="calendar-nav">
+      <button
+        type="button"
+        class="calendar-nav-button"
+        data-action="prev"
+        aria-label="Anterior"
+      >
+        <span aria-hidden="true">‹</span>
+      </button>
+      <div class="calendar-nav-current">
+        <span class="calendar-nav-label" data-calendar-label>
+          {
+            months[initialMonthIndex]?.navLabel ??
+              allWeeks[initialWeekIndex]?.navLabel ??
+              ''
+          }
+        </span>
+      </div>
+      <button
+        type="button"
+        class="calendar-nav-button"
+        data-action="next"
+        aria-label="Seguinte"
+      >
+        <span aria-hidden="true">›</span>
+      </button>
+    </div>
+  </div>
   <div class="calendar-months">
     {
       months.map((month, index) => (
