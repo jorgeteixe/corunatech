@@ -169,8 +169,8 @@ while (cursor <= rangeEnd) {
 }
 
 const prepareGroup = (group: EventGroup) => {
-  const visibleItems = group.items.slice(0, 1)
-  const overflowItems = group.items.slice(1)
+  const visibleItems = group.items.slice(0, 5)
+  const overflowItems = group.items.slice(5)
   return {
     columns: 1,
     visibleItems,
