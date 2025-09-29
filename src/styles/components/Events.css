@@ -1,18 +1,18 @@
 .events-section {
-  padding: 2rem 0;
+  padding: var(--spacing-section) 0;
 }
 
 .events-container {
   margin: 0 auto;
-  padding: 3rem;
+  padding: var(--spacing-container);
 }
 
 .events-group {
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-section);
 }
 
 .events-title {
-  font-size: 3.5rem;
+  font-size: var(--text-size-hero);
   line-height: 1.2;
   font-weight: 700;
   color: var(--text-title);

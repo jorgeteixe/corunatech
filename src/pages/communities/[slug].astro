@@ -102,32 +102,28 @@ const pastEvents = allEvents
       </div>
     </div>
 
-    <div class="community-details">
-      <div class="community-logo"></div>
-      <div class="community-metadata">
-        {
-          technologies && technologies.length > 0 && (
-            <div class="community-tech">
-              <h3>Tecnoloxías</h3>
-              <div class="tech-tags">
-                {technologies.map(tech => (
-                  <span class="tag tech-tag">{tech}</span>
-                ))}
-              </div>
+    <div class="community-metadata">
+      {
+        technologies && technologies.length > 0 && (
+          <div class="community-tech">
+            <h3>Tecnoloxías</h3>
+            <div class="tech-tags">
+              {technologies.map(tech => (
+                <span class="tag tech-tag">{tech}</span>
+              ))}
             </div>
-          )
-        }
-        {
-          meetingFrequency && (
-            <div class="meeting-frequency">
-              <h3>Frecuencia</h3>
-              <p>{meetingFrequency}</p>
-            </div>
-          )
-        }
-      </div>
+          </div>
+        )
+      }
+      {
+        meetingFrequency && (
+          <div class="meeting-frequency">
+            <h3>Frecuencia</h3>
+            <p>{meetingFrequency}</p>
+          </div>
+        )
+      }
     </div>
-
     <div class="community-events">
       <h2>Próximos eventos</h2>
       {

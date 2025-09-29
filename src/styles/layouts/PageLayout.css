@@ -1,5 +1,14 @@
 .page-layout {
   min-height: 100vh;
-  max-width: 100rem;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 12rem;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 767px) {
+  .page-layout {
+    padding-top: 8rem;
+  }
 }

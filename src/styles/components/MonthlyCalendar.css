@@ -1,8 +1,8 @@
 .calendar-section {
-  padding: 3rem;
+  padding: var(--spacing-container);
   background: var(--bg-alt);
   border-radius: var(--border-radius-lg);
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-section);
 }
 
 .calendar-header {
@@ -14,7 +14,7 @@
 }
 
 .calendar-title {
-  font-size: 2rem;
+  font-size: var(--text-size-title);
   font-weight: 700;
   color: var(--text-title);
   text-transform: capitalize;
@@ -357,8 +357,15 @@
 }
 
 @media (max-width: 768px) {
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
   .calendar-nav {
     gap: 0.35rem;
+    align-self: flex-start;
   }
 
   .calendar-nav-button {

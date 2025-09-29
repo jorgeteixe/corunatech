@@ -44,8 +44,8 @@ html {
   --logo-primary: var(--dark-blue);
   --logo-secondary: var(--light-blue);
 
-  --logo-primary-inverse: var(--white);
-  --logo-secondary-inverse: var(--light-gray);
+  --logo-primary-inverse: var(--light-gray);
+  --logo-secondary-inverse: var(--white);
 }
 
 [data-theme='dark'] {
@@ -101,6 +101,29 @@ html {
   --border-radius-md: 0.375rem;
   --border-radius-lg: 0.5rem;
   --border-radius-full: 9999px;
+
+  /* Responsive Spacing Variables */
+  --spacing-section: 3rem;
+  --spacing-container: 3rem;
+  --spacing-element: 1.5rem;
+
+  /* Typography Responsive */
+  --text-size-hero: 3.5rem;
+  --text-size-title: 3rem;
+  --text-size-subtitle: 1.25rem;
+}
+
+/* Mobile Responsive Variables */
+@media (max-width: 767px) {
+  @theme {
+    --spacing-section: 2rem;
+    --spacing-container: 1.5rem;
+    --spacing-element: 1rem;
+
+    --text-size-hero: 2.5rem;
+    --text-size-title: 2rem;
+    --text-size-subtitle: 1.1rem;
+  }
 }
 
 .link-effect {

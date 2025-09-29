@@ -16,7 +16,7 @@
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: 3rem;
+  font-size: var(--text-size-hero);
   color: var(--text-title);
   text-transform: uppercase;
 }
