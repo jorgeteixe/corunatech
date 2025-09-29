@@ -1,6 +1,6 @@
 ---
-import EventCard from './EventCard.astro'
 import MonthlyCalendar from './MonthlyCalendar.astro'
+import EventTooltip from './EventTooltip.astro'
 import { getCollection } from 'astro:content'
 import '../styles/components/Events.css'
 
@@ -9,22 +9,62 @@ const allEvents = await getCollection('events')
 const communities = await getCollection('communities')
 const communityMap = new Map(communities.map(c => [c.id, c.data.name]))
 const communityNames = Object.fromEntries(communityMap)
-
-// Current date for comparison (build time)
-const now = new Date()
-
-// Filter events into future and past
-const futureEvents = allEvents
-  .filter(event => event.data.date >= now)
-  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
-
-const pastEvents = allEvents
-  .filter(event => event.data.date < now)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 ---
 
 <section class="events-section" id="eventos">
   <div class="events-container">
     <MonthlyCalendar events={allEvents} communityNames={communityNames} />
   </div>
+
+  <!-- Tooltip para mostrar detalles del evento -->
+  <EventTooltip />
 </section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Manejar hover en eventos del calendario
+    const calendarEvents = document.querySelectorAll(
+      '.calendar-event[data-event-id]'
+    )
+
+    calendarEvents.forEach(eventButton => {
+      // Mostrar tooltip en hover
+      eventButton.addEventListener('mouseenter', () => {
+        showEventTooltip(eventButton)
+      })
+
+      // Ocultar tooltip cuando sale el mouse
+      eventButton.addEventListener('mouseleave', () => {
+        if (window.eventTooltip) {
+          window.eventTooltip.hideDelayed()
+        }
+      })
+
+      // En móvil, mantener click para mostrar tooltip
+      eventButton.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        showEventTooltip(eventButton)
+      })
+    })
+
+    function showEventTooltip(eventButton) {
+      if (!window.eventTooltip) return
+
+      const eventData = {
+        id: eventButton.dataset.eventId,
+        title: eventButton.dataset.eventTitle,
+        communityName: eventButton.dataset.eventCommunityName,
+        description: eventButton.dataset.eventDescription,
+        dateLabel: eventButton.dataset.eventDateLabel,
+        duration: eventButton.dataset.eventDuration,
+        location: eventButton.dataset.eventLocation,
+        tags: JSON.parse(eventButton.dataset.eventTags || '[]'),
+        rsvpLink: eventButton.dataset.eventRsvpLink,
+        isFuture: eventButton.dataset.eventIsFuture === 'true'
+      }
+
+      window.eventTooltip.show(eventData, eventButton)
+    }
+  })
+</script>

@@ -16,6 +16,18 @@
   transform: scale(1.03);
 }
 
+/* Estilos específicos para cards que son enlaces */
+.event-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.event-card-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 .event-card-content {
   display: flex;
   flex-direction: column;
@@ -117,4 +129,24 @@
 
 .event-card-rsvp-link:hover {
   opacity: 0.8;
+}
+
+/* Indicador visual para eventos con enlace */
+.event-card-rsvp-indicator {
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-accent);
+  color: var(--text-inverse);
+  font-size: 0.875rem;
+  border-radius: var(--border-radius-lg);
+  font-weight: 500;
+}
+
+/* Hover específico para cards con enlace */
+.event-card-link .event-card-rsvp-indicator {
+  transition: all 0.2s ease;
+}
+
+.event-card-link:hover .event-card-rsvp-indicator {
+  background-color: var(--bg-accent-hover, var(--bg-accent));
+  transform: translateY(-1px);
 }

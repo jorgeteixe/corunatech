@@ -404,16 +404,26 @@ const weekdayLabels = Array.from({ length: 7 }, (_, index) =>
                               class="calendar-event-wrapper"
                               data-calendar-event={event.id}
                             >
-                              <a
-                                href={buildCommunityHref(event.community)}
+                              <button
+                                type="button"
                                 class="calendar-event"
                                 data-calendar-community={event.community}
+                                data-event-id={event.id}
+                                data-event-title={event.title}
+                                data-event-community-name={event.communityName}
+                                data-event-description={event.description}
+                                data-event-date-label={event.dateLabel}
+                                data-event-duration={event.duration || ''}
+                                data-event-location={event.location || ''}
+                                data-event-tags={JSON.stringify(event.tags)}
+                                data-event-rsvp-link={event.rsvpLink || ''}
+                                data-event-is-future={event.isFuture}
                                 title={`${event.title} • ${event.timeLabel}`}
                               >
                                 <span class="calendar-event-title">
                                   {event.communityName} • {event.timeLabel}
                                 </span>
-                              </a>
+                              </button>
                             </div>
                           ))}
                           {overflow > 0 && (

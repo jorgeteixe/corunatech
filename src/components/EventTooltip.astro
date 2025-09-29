@@ -1,0 +1,151 @@
+---
+import '../styles/components/EventTooltip.css'
+---
+
+<div id="event-tooltip" class="event-tooltip">
+  <div class="event-tooltip-content">
+    <div class="event-tooltip-header">
+      <h3 class="event-tooltip-title"></h3>
+      <p class="event-tooltip-community"></p>
+    </div>
+
+    <div class="event-tooltip-details">
+      <p class="event-tooltip-date"></p>
+      <p class="event-tooltip-location"></p>
+    </div>
+
+    <div class="event-tooltip-description"></div>
+
+    <div class="event-tooltip-rsvp" style="display: none;">
+      <a
+        href="#"
+        class="event-tooltip-rsvp-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Apuntarse →
+      </a>
+    </div>
+  </div>
+  <div class="event-tooltip-arrow"></div>
+</div>
+
+<script is:inline>
+  class EventTooltip {
+    constructor() {
+      this.tooltip = document.getElementById('event-tooltip')
+      this.title = this.tooltip?.querySelector('.event-tooltip-title')
+      this.community = this.tooltip?.querySelector('.event-tooltip-community')
+      this.date = this.tooltip?.querySelector('.event-tooltip-date')
+      this.location = this.tooltip?.querySelector('.event-tooltip-location')
+      this.description = this.tooltip?.querySelector(
+        '.event-tooltip-description'
+      )
+      this.rsvp = this.tooltip?.querySelector('.event-tooltip-rsvp')
+      this.rsvpLink = this.tooltip?.querySelector('.event-tooltip-rsvp-link')
+
+      this.hideTimeout = null
+      this.init()
+    }
+
+    init() {
+      if (!this.tooltip) return
+
+      // Prevenir que el tooltip se cierre al hacer hover sobre él
+      this.tooltip.addEventListener('mouseenter', () => {
+        this.clearHideTimeout()
+      })
+
+      this.tooltip.addEventListener('mouseleave', () => {
+        this.hide()
+      })
+    }
+
+    show(eventData, targetElement) {
+      if (!this.tooltip) return
+
+      this.clearHideTimeout()
+
+      // Rellenar datos
+      if (this.title) this.title.textContent = eventData.title
+      if (this.community) this.community.textContent = eventData.communityName
+      if (this.date) this.date.textContent = eventData.dateLabel
+      if (this.location) {
+        this.location.textContent =
+          eventData.location || 'Ubicación no especificada'
+      }
+      if (this.description) {
+        this.description.textContent = eventData.description
+      }
+
+      // Botón de apuntarse
+      if (this.rsvp && this.rsvpLink) {
+        if (eventData.isFuture && eventData.rsvpLink) {
+          this.rsvp.style.display = 'block'
+          this.rsvpLink.href = eventData.rsvpLink
+        } else {
+          this.rsvp.style.display = 'none'
+        }
+      }
+
+      // Posicionar tooltip
+      this.position(targetElement)
+
+      // Mostrar tooltip
+      this.tooltip.classList.add('event-tooltip--visible')
+    }
+
+    hide() {
+      if (!this.tooltip) return
+      this.tooltip.classList.remove('event-tooltip--visible')
+    }
+
+    hideDelayed(delay = 300) {
+      this.hideTimeout = setTimeout(() => {
+        this.hide()
+      }, delay)
+    }
+
+    clearHideTimeout() {
+      if (this.hideTimeout) {
+        clearTimeout(this.hideTimeout)
+        this.hideTimeout = null
+      }
+    }
+
+    position(targetElement) {
+      if (!this.tooltip || !targetElement) return
+
+      const rect = targetElement.getBoundingClientRect()
+      const tooltipRect = this.tooltip.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+      const viewportWidth = window.innerWidth
+
+      let top = rect.bottom + 10
+      let left = rect.left + rect.width / 2 - tooltipRect.width / 2
+
+      // Ajustar si se sale de la pantalla horizontalmente
+      if (left < 10) {
+        left = 10
+      } else if (left + tooltipRect.width > viewportWidth - 10) {
+        left = viewportWidth - tooltipRect.width - 10
+      }
+
+      // Ajustar si se sale de la pantalla verticalmente
+      if (top + tooltipRect.height > viewportHeight - 10) {
+        top = rect.top - tooltipRect.height - 10
+        this.tooltip.classList.add('event-tooltip--above')
+      } else {
+        this.tooltip.classList.remove('event-tooltip--above')
+      }
+
+      this.tooltip.style.top = `${top}px`
+      this.tooltip.style.left = `${left}px`
+    }
+  }
+
+  // Inicializar tooltip cuando se carga el DOM
+  document.addEventListener('DOMContentLoaded', () => {
+    window.eventTooltip = new EventTooltip()
+  })
+</script>
