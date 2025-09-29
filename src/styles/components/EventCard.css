@@ -4,7 +4,7 @@
   box-shadow: var(--shadow-md);
   padding: 1.5rem;
   transition: box-shadow 0.3s, transform 0.15s ease;
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-dark);
   height: 100%;
   display: flex;
   will-change: transform;

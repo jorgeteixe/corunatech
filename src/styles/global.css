@@ -31,7 +31,8 @@ html {
   --text-inverse: var(--white);
 
   /* Variables para borde (2) */
-  --border-default: var(--dark-gray);
+  --border-default: var(--white);
+  --border-dark: var(--dark-gray);
   --border-light: var(--light-gray);
   --border-accent: var(--light-blue);
 

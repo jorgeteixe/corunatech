@@ -57,7 +57,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: var(--border-radius-full);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-dark);
   background: var(--bg-main);
   color: var(--text-title);
   font-size: 1.5rem;
@@ -123,7 +123,7 @@
   min-height: 8rem;
   background: var(--bg-main);
   border-radius: var(--border-radius-md);
-  border: 1px solid transparent;
+  border: 1px solid var(--border-default);
   display: flex;
   flex-direction: column;
   padding: 0.75rem;
@@ -142,8 +142,8 @@
 }
 
 .calendar-day--outside {
-  background: var(--bg-dark);
-  color: var(--text-muted);
+  background: var(--bg-alt);
+  color: var(--text-inverse);
   opacity: 0.6;
 }
 
@@ -159,7 +159,7 @@
 }
 
 .calendar-day--outside .calendar-day-label {
-  color: var(--text-muted);
+  color: var(--text-inverse);
 }
 
 .calendar-day-events {
@@ -208,7 +208,7 @@
 
 .calendar-event:hover,
 .calendar-event:focus-visible {
-  border-color: var(--border-default);
+  border-color: var(--border-dark);
   transform: translateY(-2px);
 }
 
@@ -232,7 +232,7 @@
 .calendar-event-overflow {
   padding: 0.35rem 0.6rem;
   border-radius: var(--border-radius-full);
-  border: 1px dashed var(--border-default);
+  border: 1px dashed var(--border-dark);
   font-size: 0.75rem;
   font-weight: 600;
   text-align: center;

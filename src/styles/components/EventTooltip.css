@@ -2,7 +2,7 @@
   position: fixed;
   z-index: 1000;
   background: var(--bg-main);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-dark);
   border-radius: 8px;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -82,7 +82,7 @@
 }
 
 .event-tooltip-rsvp {
-  border-top: 1px solid var(--border-default);
+  border-top: 1px solid var(--border-dark);
   padding-top: 0.75rem;
   margin-top: 0.75rem;
 }
@@ -111,7 +111,7 @@
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--border-default);
+  border-bottom: 8px solid var(--border-dark);
   top: -8px;
   left: 50%;
   transform: translateX(-50%);
@@ -133,7 +133,7 @@
   top: auto;
   bottom: -8px;
   border-bottom: none;
-  border-top: 8px solid var(--border-default);
+  border-top: 8px solid var(--border-dark);
 }
 
 .event-tooltip--above .event-tooltip-arrow::after {
