@@ -1,0 +1,196 @@
+/* Banner de eventos que se muestra cuando hay eventos próximos o en curso */
+.event-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    48deg,
+    #e3c1f4,
+    #d9d7ed,
+    #dff7f1,
+    #acf0ff,
+    #e3c1f4,
+    #d9d7ed,
+    #dff7f1,
+    #acf0ff,
+    #e3c1f4
+  );
+  background-size: 200% 200%;
+  animation: iridescent-foil 8s ease infinite;
+  color: var(--black);
+  height: 40px;
+  overflow: hidden;
+  z-index: 1000;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor del contenido que se desplaza */
+.event-banner-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  animation: scroll-banner 30s linear infinite;
+  padding-left: 100%; /* Empezar desde fuera de la pantalla */
+}
+
+/* Animación de desplazamiento continuo */
+@keyframes scroll-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Pausar animación al hacer hover */
+.event-banner:hover .event-banner-content {
+  animation-play-state: paused;
+}
+
+/* Cada elemento del banner */
+.event-banner-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 40px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Estado del evento (EN CURSO o MAÑANA) */
+.event-status {
+  background: var(--dark-blue);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--dark-blue);
+  text-shadow: none;
+}
+
+/* Nombre de la comunidad */
+.event-community {
+  color: var(--black);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Título del evento */
+.event-title {
+  color: var(--black);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Ubicación del evento */
+.event-location {
+  color: var(--dark-gray);
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Hora del evento */
+.event-time {
+  color: var(--dark-gray);
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Separadores entre elementos */
+.event-separator {
+  color: var(--medium-gray);
+  font-weight: 300;
+  margin: 0 2px;
+}
+
+/* Divisor entre diferentes eventos */
+.event-divider {
+  color: var(--medium-gray);
+  font-size: 1.2rem;
+  margin: 0 20px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Ajustes para diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+  .event-banner {
+    height: 35px;
+  }
+
+  .event-banner-item {
+    font-size: 0.8rem;
+    gap: 6px;
+    margin-right: 30px;
+  }
+
+  .event-status {
+    font-size: 0.7rem;
+    padding: 1px 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-banner {
+    height: 32px;
+  }
+
+  .event-banner-item {
+    font-size: 0.75rem;
+    gap: 4px;
+    margin-right: 25px;
+  }
+
+  .event-status {
+    font-size: 0.65rem;
+    padding: 1px 5px;
+  }
+}
+
+/* Animación de entrada suave */
+.event-banner {
+  animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Efecto de brillo sutil */
+.event-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}

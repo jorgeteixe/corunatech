@@ -223,3 +223,29 @@ html {
   box-sizing: border-box;
   filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.15));
 }
+
+/* Ajuste de espaciado para el banner de eventos */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Agregar margen superior cuando el banner esté presente */
+body:has(.event-banner) main,
+body:has(.event-banner) .header {
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  body:has(.event-banner) main,
+  body:has(.event-banner) .header {
+    margin-top: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  body:has(.event-banner) main,
+  body:has(.event-banner) .header {
+    margin-top: 32px;
+  }
+}

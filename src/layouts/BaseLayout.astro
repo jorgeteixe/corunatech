@@ -2,6 +2,7 @@
 import '../styles/global.css'
 import '../styles/layouts/BaseLayout.css'
 import Footer from '../components/Footer.astro'
+import EventBanner from '../components/EventBanner.astro'
 
 interface Props {
   title?: string
@@ -83,6 +84,7 @@ const imageUrl = `${siteUrl}${image}`
     </script>
   </head>
   <body>
+    <EventBanner />
     <slot name="header" />
     <slot />
     <Footer />
