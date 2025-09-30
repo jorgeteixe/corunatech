@@ -3,6 +3,7 @@ import '../styles/global.css'
 import '../styles/layouts/BaseLayout.css'
 import Footer from '../components/Footer.astro'
 import EventBanner from '../components/EventBanner.astro'
+import { buildImageUrl, getDefaultImage } from '../utils/url-utils'
 
 interface Props {
   title?: string
@@ -10,10 +11,10 @@ interface Props {
   image?: string
 }
 
-const { title = '', description = '', image = '/meta.png' } = Astro.props
+const { title = '', description = '', image = getDefaultImage() } = Astro.props
 
 const siteUrl = Astro.site?.toString()
-const imageUrl = `${siteUrl}${image}`
+const imageUrl = buildImageUrl(siteUrl, image)
 ---
 
 <!doctype html>

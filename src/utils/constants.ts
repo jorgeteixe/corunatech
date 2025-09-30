@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  DEFAULT_IMAGE: '/meta.png',
+  DEFAULT_IMAGE: '/corunatech/placeholder.png',
   BASE_PATH: '/corunatech',
   LOCALE: 'gl'
 } as const
