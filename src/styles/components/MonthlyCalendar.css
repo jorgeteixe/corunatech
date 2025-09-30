@@ -207,10 +207,21 @@
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
+.calendar-event[data-event-is-future='false'] {
+  background: var(--border-light);
+  color: var(--text-body);
+  border-color: var(--text-muted);
+}
+
 .calendar-event:hover,
 .calendar-event:focus-visible {
   border-color: var(--border-dark);
   transform: translateY(-2px);
+}
+
+.calendar-event[data-event-is-future='false']:hover,
+.calendar-event[data-event-is-future='false']:focus-visible {
+  border-color: var(--border-dark);
 }
 
 .calendar-event-time {
