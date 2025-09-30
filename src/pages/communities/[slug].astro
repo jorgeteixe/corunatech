@@ -2,7 +2,7 @@
 // src/pages/communities/[slug].astro
 import { getCollection } from 'astro:content'
 import DetailLayout from '../../layouts/DetailLayout.astro'
-import EventCard from '../../components/EventCard.astro'
+import EventCard from '../../components/eventCard/EventCard.astro'
 import '../../styles/pages/CommunityDetail.css'
 
 // Genera rutas para todas las comunidades
@@ -131,15 +131,13 @@ const pastEvents = allEvents
           <div class="events-list">
             {upcomingEvents.map(event => (
               <EventCard
-                slug={event.id}
                 title={event.data.title}
                 description={event.data.description}
                 date={event.data.date}
                 location={event.data.location}
                 rsvpLink={event.data.rsvpLink}
                 tags={event.data.tags}
-                community={event.data.community}
-                communityName={name}
+                communityName={event.data.community || name}
               />
             ))}
           </div>
@@ -154,14 +152,12 @@ const pastEvents = allEvents
           <div class="events-list past-events">
             {pastEvents.map(event => (
               <EventCard
-                slug={event.id}
                 title={event.data.title}
                 description={event.data.description}
                 date={event.data.date}
                 location={event.data.location}
                 tags={event.data.tags}
-                community={event.data.community}
-                communityName={name}
+                communityName={event.data.community || name}
               />
             ))}
           </div>

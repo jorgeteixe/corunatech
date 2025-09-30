@@ -1,0 +1,18 @@
+---
+interface Props {
+  rsvpLink: string
+}
+
+const { rsvpLink } = Astro.props
+---
+
+<div class="event-card-footer">
+  <a
+    href={rsvpLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="event-card-rsvp-link"
+  >
+    Apuntarse →
+  </a>
+</div>

@@ -1,0 +1,34 @@
+---
+import { formatDate } from '../../utils/date-utils'
+
+interface Props {
+  date: Date
+  duration?: string
+  location?: string
+}
+
+const { date, duration, location } = Astro.props
+---
+
+<div class="event-card-details">
+  <p class="event-card-detail">
+    <span class="event-card-detail-icon">📅</span>
+    {formatDate(date)}
+  </p>
+  {
+    duration && (
+      <p class="event-card-detail">
+        <span class="event-card-detail-icon">⏱️</span>
+        Duración: {duration}
+      </p>
+    )
+  }
+  {
+    location && (
+      <p class="event-card-detail">
+        <span class="event-card-detail-icon">📍</span>
+        {location}
+      </p>
+    )
+  }
+</div>
