@@ -1,0 +1,50 @@
+---
+import type { CalendarEventItem } from '../../types/calendar'
+
+export interface Props {
+  event: CalendarEventItem
+  isButton?: boolean
+  href?: string
+}
+
+const { event, isButton = false, href } = Astro.props
+
+const commonProps = {
+  class: 'calendar-event',
+  'data-calendar-community': event.community,
+  title: `${event.title} • ${event.timeLabel}`
+}
+
+const buttonProps = isButton
+  ? {
+      'data-event-id': event.id,
+      'data-event-title': event.title,
+      'data-event-community-name': event.communityName,
+      'data-event-description': event.description,
+      'data-event-date-label': event.dateLabel,
+      'data-event-duration': event.duration || '',
+      'data-event-location': event.location || '',
+      'data-event-tags': JSON.stringify(event.tags),
+      'data-event-rsvp-link': event.rsvpLink || '',
+      'data-event-is-future': event.isFuture
+    }
+  : {}
+---
+
+<div class="calendar-event-wrapper" data-calendar-event={event.id}>
+  {
+    isButton ? (
+      <button type="button" {...commonProps} {...buttonProps}>
+        <span class="calendar-event-title">
+          {event.communityName} • {event.timeLabel}
+        </span>
+      </button>
+    ) : (
+      <a href={href} {...commonProps}>
+        <span class="calendar-event-title">
+          {event.communityName} • {event.timeLabel}
+        </span>
+      </a>
+    )
+  }
+</div>

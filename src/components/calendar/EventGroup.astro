@@ -1,0 +1,48 @@
+---
+import type { EventGroup } from '../../types/calendar'
+import { prepareGroup } from '../../utils/calendar-utils'
+import CalendarEvent from './CalendarEvent.astro'
+
+export interface Props {
+  group: EventGroup
+  vertical?: boolean
+  buildCommunityHref?: (community: string) => string
+}
+
+const { group, vertical = false, buildCommunityHref } = Astro.props
+
+const { columns, visibleItems, overflow } = prepareGroup(group)
+---
+
+<div
+  class:list={{
+    'calendar-event-group': true,
+    'calendar-event-group--vertical': vertical
+  }}
+  style={`--calendar-group-columns:${columns}`}
+>
+  {
+    visibleItems.map(event => (
+      <CalendarEvent
+        event={event}
+        isButton={!buildCommunityHref}
+        href={
+          buildCommunityHref ? buildCommunityHref(event.community) : undefined
+        }
+      />
+    ))
+  }
+  {
+    overflow > 0 && (
+      <div class="calendar-event-overflow-wrapper">
+        <button
+          type="button"
+          class="calendar-event-overflow"
+          aria-label={`+${overflow} eventos máis neste horario`}
+        >
+          +{overflow}
+        </button>
+      </div>
+    )
+  }
+</div>

@@ -1,0 +1,43 @@
+---
+import type { DayCell } from '../../types/calendar'
+import { parseKey, weekdayLongFormatter } from '../../utils/calendar-utils'
+import EventGroup from './EventGroup.astro'
+
+export interface Props {
+  day: DayCell
+  buildCommunityHref: (community: string) => string
+}
+
+const { day, buildCommunityHref } = Astro.props
+
+const weekdayLabel = weekdayLongFormatter.format(parseKey(day.key))
+---
+
+<div
+  class:list={{
+    'calendar-week-day': true,
+    'calendar-week-day--outside': !day.isCurrentMonth,
+    'calendar-week-day--today': day.isToday
+  }}
+  data-calendar-date={day.key}
+>
+  <div class="calendar-week-day-heading">
+    <span class="calendar-week-day-number">{day.label}</span>
+    <span class="calendar-week-day-name">{weekdayLabel}</span>
+  </div>
+  <div class="calendar-week-day-events">
+    {
+      day.groups.length === 0 ? (
+        <p class="calendar-week-day-empty">Sen eventos</p>
+      ) : (
+        day.groups.map(group => (
+          <EventGroup
+            group={group}
+            vertical={true}
+            buildCommunityHref={buildCommunityHref}
+          />
+        ))
+      )
+    }
+  </div>
+</div>

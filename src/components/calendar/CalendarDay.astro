@@ -1,0 +1,26 @@
+---
+import type { DayCell } from '../../types/calendar'
+import EventGroup from './EventGroup.astro'
+
+export interface Props {
+  day: DayCell
+}
+
+const { day } = Astro.props
+---
+
+<div
+  class:list={{
+    'calendar-day': true,
+    'calendar-day--current': day.isCurrentMonth,
+    'calendar-day--outside': !day.isCurrentMonth,
+    'calendar-day--today': day.isToday
+  }}
+  data-calendar-date={day.key}
+  role="gridcell"
+>
+  <div class="calendar-day-label">{day.label}</div>
+  <div class="calendar-day-events">
+    {day.groups.map(group => <EventGroup group={group} />)}
+  </div>
+</div>
