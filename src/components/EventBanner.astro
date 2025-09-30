@@ -2,22 +2,18 @@
 import { getCollection } from 'astro:content'
 import '../styles/components/EventBanner.css'
 
-// Obtener todos los eventos
 const events = await getCollection('events')
 const communities = await getCollection('communities')
 
-// Crear un mapa de comunidades para acceso rápido
 const communityMap = new Map(
   communities.map(community => [community.id, community.data])
 )
 
-// Función para verificar si un evento es hoy o mañana
 function isEventSoonOrToday(eventDate: Date) {
   const today = new Date()
   const tomorrow = new Date(today)
   tomorrow.setDate(today.getDate() + 1)
 
-  // Normalizar fechas para comparar solo día/mes/año
   const todayStr = today.toDateString()
   const tomorrowStr = tomorrow.toDateString()
   const eventStr = eventDate.toDateString()
@@ -25,20 +21,16 @@ function isEventSoonOrToday(eventDate: Date) {
   return eventStr === todayStr || eventStr === tomorrowStr
 }
 
-// Función para verificar si un evento está en curso
 function isEventInProgress(startDate: Date, endDate?: Date) {
   const now = new Date()
 
-  // Si solo tenemos fecha de inicio, verificar si es hoy
   if (!endDate) {
     return startDate.toDateString() === now.toDateString()
   }
 
-  // Si tenemos fecha de fin, verificar si estamos entre las dos fechas
   return now >= startDate && now <= endDate
 }
 
-// Función para formatear la hora del evento
 function formatEventTime(startDate: Date, endDate?: Date) {
   const startTimeStr = startDate.toLocaleTimeString('es-ES', {
     hour: '2-digit',
@@ -56,7 +48,6 @@ function formatEventTime(startDate: Date, endDate?: Date) {
   return startTimeStr
 }
 
-// Filtrar eventos relevantes
 const relevantEvents = events
   .filter(event => {
     const isToday = isEventSoonOrToday(event.data.date)
@@ -95,7 +86,6 @@ const relevantEvents = events
             )}
           </div>
         ))}
-        {/* Duplicar el contenido para efecto continuo */}
         {relevantEvents.map((event, index) => (
           <div class="event-banner-item">
             <span class="event-status">

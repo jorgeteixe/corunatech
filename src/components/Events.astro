@@ -3,7 +3,6 @@ import MonthlyCalendar from './MonthlyCalendar.astro'
 import EventTooltip from './EventTooltip.astro'
 import { getCollection } from 'astro:content'
 import '../styles/components/Events.css'
-// Get all events and communities
 const allEvents = await getCollection('events')
 const communities = await getCollection('communities')
 const communityMap = new Map(

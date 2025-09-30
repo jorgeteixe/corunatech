@@ -28,7 +28,6 @@ import '../styles/components/ThemeToggle.css'
   let isHovering = false
 
   if (toggleButton) {
-    // Detectar cuando el cursor entra y sale del botón
     toggleButton.addEventListener('mouseenter', () => {
       isHovering = true
     })
@@ -38,7 +37,6 @@ import '../styles/components/ThemeToggle.css'
     })
 
     toggleButton.addEventListener('click', e => {
-      // Solo funcionar si no estamos en modo hover
       if (isHovering) {
         e.preventDefault()
         return

@@ -1,15 +1,12 @@
 ---
-// src/pages/communities/[slug].astro
 import { getCollection } from 'astro:content'
 import DetailLayout from '../../layouts/DetailLayout.astro'
 import EventCard from '../../components/eventCard/EventCard.astro'
 import '../../styles/pages/CommunityDetail.css'
 
-// Genera rutas para todas las comunidades
 export async function getStaticPaths() {
   const communities = await getCollection('communities')
   return communities.map(community => {
-    // Elimina la extensión .yaml del id para el slug
     const slug = community.id.replace(/\.yaml$/, '')
     return {
       params: { slug },
@@ -18,7 +15,6 @@ export async function getStaticPaths() {
   })
 }
 
-// Obtiene la comunidad y sus eventos
 const { community } = Astro.props
 const {
   name,
@@ -31,16 +27,13 @@ const {
   meetingFrequency
 } = community.data
 
-// Obtiene el slug de la comunidad (sin extensión .yaml)
 const communitySlug = community.id.replace(/\.yaml$/, '')
 
-// Obtiene todos los eventos relacionados con esta comunidad
 const allEvents = await getCollection(
   'events',
   ({ data }) => data.community === communitySlug
 )
 
-// Separar eventos en próximos y pasados
 const now = new Date()
 const upcomingEvents = allEvents
   .filter(event => new Date(event.data.date) > now)

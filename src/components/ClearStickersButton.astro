@@ -50,7 +50,6 @@ import '../styles/components/ClearStickersButton.css'
   let isHovering = false
 
   if (clearButton) {
-    // Detectar cuando el cursor entra y sale del botón
     clearButton.addEventListener('mouseenter', () => {
       isHovering = true
     })
@@ -60,7 +59,6 @@ import '../styles/components/ClearStickersButton.css'
     })
 
     clearButton.addEventListener('click', e => {
-      // El botón de limpiar stickers siempre debe funcionar
       document.dispatchEvent(new CustomEvent('clear-stickers'))
     })
   }
