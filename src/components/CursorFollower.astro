@@ -10,10 +10,12 @@ const communityLogos = communities.map(community => community.data.logo)
   <span class="cursor-text">click</span>
 </div>
 
-<script define:vars={{ communityLogos }}>
-  import { initializeCursorFollower } from '../utils/cursor-follower-utils'
+<script src="../scripts/cursor-follower.ts"></script>
 
+<script define:vars={{ communityLogos }}>
   document.addEventListener('DOMContentLoaded', () => {
-    initializeCursorFollower(communityLogos)
+    if (window.initializeCursorFollower) {
+      window.initializeCursorFollower(communityLogos)
+    }
   })
 </script>

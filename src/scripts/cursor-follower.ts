@@ -22,14 +22,14 @@ const STICKER_SHAPES = [
   'shape-arch',
   'shape-shield',
   'shape-ticket'
-]
+] as const
 
 const STICKER_BORDERS = [
   'border-simple',
   'border-double',
   'border-dotted',
   'border-dashed'
-]
+] as const
 
 const STICKER_COLORS = [
   'border-color-1',
@@ -37,21 +37,21 @@ const STICKER_COLORS = [
   'border-color-3',
   'border-color-4',
   'border-color-5'
-]
+] as const
 
 const ANIMATION_SPEED = 0.1
 const BORDER_MARGIN = 10
 const FALLBACK_IMAGE = '/placeholder.png'
 
-export const getRandomElement = <T>(array: T[]): T => {
+const getRandomElement = <T>(array: readonly T[]): T => {
   return array[Math.floor(Math.random() * array.length)]
 }
 
-export const getRandomRotation = (): number => {
+const getRandomRotation = (): number => {
   return Math.random() * 30 - 15
 }
 
-export const createStickerElement = (config: StickerConfig): HTMLElement => {
+const createStickerElement = (config: StickerConfig): HTMLElement => {
   const outerContainer = document.createElement('div')
   const stickerImage = document.createElement('img')
 
@@ -72,7 +72,7 @@ export const createStickerElement = (config: StickerConfig): HTMLElement => {
   stickerImage.src = config.logo
   stickerImage.alt = 'Community Logo Sticker'
   stickerImage.classList.add('sticker-image-content')
-  stickerImage.onerror = function () {
+  stickerImage.onerror = function (this: HTMLImageElement) {
     this.src = FALLBACK_IMAGE
     console.error('Error cargando logo:', config.logo)
   }
@@ -81,10 +81,7 @@ export const createStickerElement = (config: StickerConfig): HTMLElement => {
   return outerContainer
 }
 
-export const animateSticker = (
-  element: HTMLElement,
-  rotation: number
-): void => {
+const animateSticker = (element: HTMLElement, rotation: number): void => {
   const animation = element.animate(
     [
       {
@@ -102,7 +99,7 @@ export const animateSticker = (
   animation.play()
 }
 
-export const adjustFollowerPosition = (
+const adjustFollowerPosition = (
   followerX: number,
   followerY: number,
   followerRect: DOMRect
@@ -132,16 +129,19 @@ export const adjustFollowerPosition = (
   return { x: adjustedX, y: adjustedY }
 }
 
-export const checkSpecialButton = (
-  target: Element,
+const checkSpecialButton = (
+  target: EventTarget | null,
   follower: HTMLElement
 ): boolean => {
-  const specialButton = target.closest('[data-cursor-message]')
-  const textSpan = follower.querySelector('.cursor-text')
+  if (!(target instanceof Element)) return false
+
+  const specialButton = target.closest(
+    '[data-cursor-message]'
+  ) as HTMLElement | null
+  const textSpan = follower.querySelector('.cursor-text') as HTMLElement | null
 
   if (specialButton && textSpan) {
-    textSpan.textContent =
-      (specialButton as HTMLElement).dataset.cursorMessage || 'click'
+    textSpan.textContent = specialButton.dataset.cursorMessage || 'click'
     return true
   } else if (textSpan) {
     textSpan.textContent = 'click'
@@ -151,7 +151,7 @@ export const checkSpecialButton = (
   return false
 }
 
-export const initializeCursorFollower = (communityLogos: string[]): void => {
+const initializeCursorFollower = (communityLogos: string[]): void => {
   const follower = document.getElementById('cursor-follower')
   if (!follower) return
 
@@ -169,18 +169,20 @@ export const initializeCursorFollower = (communityLogos: string[]): void => {
     stickers.forEach(sticker => sticker.remove())
   })
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent): void => {
     state.cursorX = e.clientX
     state.cursorY = e.clientY
 
-    const target = e.target as Element
-    state.isOverSlider = !!target.closest('.events-section')
+    const target = e.target
+    state.isOverSlider = !!(
+      target instanceof Element && target.closest('.events-section')
+    )
     state.isOverSpecialButton = checkSpecialButton(target, follower)
 
     follower.style.opacity = state.isOverSlider ? '0' : '1'
   }
 
-  const updateFollowerPosition = () => {
+  const updateFollowerPosition = (): void => {
     state.followerX += (state.cursorX - state.followerX) * ANIMATION_SPEED
     state.followerY += (state.cursorY - state.followerY) * ANIMATION_SPEED
 
@@ -197,9 +199,11 @@ export const initializeCursorFollower = (communityLogos: string[]): void => {
     requestAnimationFrame(updateFollowerPosition)
   }
 
-  const handleClick = (e: MouseEvent) => {
-    const target = e.target as Element
-    const textSpan = follower.querySelector('.cursor-text')
+  const handleClick = (e: MouseEvent): void => {
+    const target = e.target
+    const textSpan = follower.querySelector(
+      '.cursor-text'
+    ) as HTMLElement | null
 
     if (textSpan && !state.isOverSlider) {
       textSpan.textContent = 'click!'
@@ -208,7 +212,10 @@ export const initializeCursorFollower = (communityLogos: string[]): void => {
       }, 1000)
     }
 
-    if (target.closest('a, button') || state.isOverSlider) {
+    if (
+      target instanceof Element &&
+      (target.closest('a, button') || state.isOverSlider)
+    ) {
       return
     }
 
@@ -230,3 +237,16 @@ export const initializeCursorFollower = (communityLogos: string[]): void => {
   document.addEventListener('click', handleClick)
   updateFollowerPosition()
 }
+
+// Extend Window interface
+declare global {
+  interface Window {
+    initializeCursorFollower: (communityLogos: string[]) => void
+  }
+}
+
+// Make function available globally with proper typing
+;(window as any).initializeCursorFollower = initializeCursorFollower
+
+// Export to make this a module
+export {}

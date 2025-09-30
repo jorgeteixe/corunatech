@@ -20,10 +20,14 @@ const communityNames = Object.fromEntries(communityMap)
   <EventTooltip />
 </section>
 
-<script>
-  import { initializeEventTooltips } from '../utils/event-tooltip-utils'
+<script src="../scripts/event-tooltip.ts"></script>
 
+<script>
   document.addEventListener('DOMContentLoaded', () => {
-    initializeEventTooltips()
+    // @ts-ignore
+    if (window.initializeEventTooltips) {
+      // @ts-ignore
+      window.initializeEventTooltips()
+    }
   })
 </script>

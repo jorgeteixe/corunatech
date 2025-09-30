@@ -28,7 +28,7 @@ export const extractEventDataFromElement = (
   }
 }
 
-export const initializeEventTooltips = () => {
+const initializeEventTooltips = (): void => {
   const calendarEvents = document.querySelectorAll(
     '.calendar-event[data-event-id]'
   ) as NodeListOf<HTMLElement>
@@ -51,6 +51,19 @@ export const initializeEventTooltips = () => {
     })
   })
 }
+
+// Extend Window interface
+declare global {
+  interface Window {
+    initializeEventTooltips: () => void
+  }
+}
+
+// Make function available globally with proper typing
+;(window as any).initializeEventTooltips = initializeEventTooltips
+
+// Export to make this a module
+export {}
 
 const showEventTooltip = (eventButton: HTMLElement) => {
   const eventTooltip = (window as any).eventTooltip
