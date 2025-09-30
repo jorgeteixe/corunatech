@@ -1,6 +1,8 @@
 ---
 import '../styles/components/EventCard.css'
-export interface Props {
+import { formatDate, isDateInFuture } from '../utils/date-utils'
+
+interface Props {
   slug: string
   title: string
   description: string
@@ -28,23 +30,7 @@ const {
   communityName
 } = Astro.props
 
-const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat('gl', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(date)
-}
-
-const formatTime = (date: Date) => {
-  return new Intl.DateTimeFormat('gl', {
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(date)
-}
+const shouldShowRsvpButton = rsvpLink && isDateInFuture(date)
 ---
 
 <div class="event-card">
@@ -96,9 +82,8 @@ const formatTime = (date: Date) => {
         {tags.map(tag => <span class="event-card-tag">{tag}</span>)}
       </div>
 
-      <!-- Footer - Mostrar botón solo si hay rsvpLink y la fecha es futura -->
       {
-        rsvpLink && new Date(date) > new Date() && (
+        shouldShowRsvpButton && (
           <div class="event-card-footer">
             <a
               href={rsvpLink}
