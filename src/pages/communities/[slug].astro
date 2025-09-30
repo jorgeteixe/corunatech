@@ -137,7 +137,7 @@ const pastEvents = allEvents
                 location={event.data.location}
                 rsvpLink={event.data.rsvpLink}
                 tags={event.data.tags}
-                communityName={event.data.community || name}
+                communityName={name || event.data.community}
               />
             ))}
           </div>
@@ -157,7 +157,7 @@ const pastEvents = allEvents
                 date={event.data.date}
                 location={event.data.location}
                 tags={event.data.tags}
-                communityName={event.data.community || name}
+                communityName={name || event.data.community}
               />
             ))}
           </div>
