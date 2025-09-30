@@ -1,13 +1,20 @@
 ---
 import { getCollection } from 'astro:content'
 import DetailLayout from '../../layouts/DetailLayout.astro'
-import EventCard from '../../components/eventCard/EventCard.astro'
+import CommunityHeader from '../../components/community/CommunityHeader.astro'
+import CommunityMetadata from '../../components/community/CommunityMetadata.astro'
+import CommunityEvents from '../../components/community/CommunityEvents.astro'
+import {
+  separateEventsByDate,
+  getCommunitySlug,
+  getCommunityEvents
+} from '../../utils/community-utils'
 import '../../styles/pages/CommunityDetail.css'
 
 export async function getStaticPaths() {
   const communities = await getCollection('communities')
   return communities.map(community => {
-    const slug = community.id.replace(/\.yaml$/, '')
+    const slug = getCommunitySlug(community.id)
     return {
       params: { slug },
       props: { community }
@@ -22,142 +29,34 @@ const {
   logo,
   website,
   socials,
-  tags,
   technologies,
   meetingFrequency
 } = community.data
 
-const communitySlug = community.id.replace(/\.yaml$/, '')
-
-const allEvents = await getCollection(
-  'events',
-  ({ data }) => data.community === communitySlug
-)
-
-const now = new Date()
-const upcomingEvents = allEvents
-  .filter(event => new Date(event.data.date) > now)
-  .sort(
-    (a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime()
-  )
-
-const pastEvents = allEvents
-  .filter(event => new Date(event.data.date) <= now)
-  .sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
-  )
+const communitySlug = getCommunitySlug(community.id)
+const allEvents = await getCommunityEvents(getCollection, communitySlug)
+const { upcomingEvents, pastEvents } = separateEventsByDate(allEvents)
 ---
 
 <DetailLayout title={`${name} - CoruñaTech`} description={description}>
   <div class="community-detail">
-    <div class="community-header">
-      <div class="community-header-content">
-        <div class="community-logo">
-          {logo && <img src={logo} alt={`Logo de ${name}`} />}
-        </div>
-        <div class="community-info">
-          <h1 class="community-name">{name}</h1>
-          <p class="community-description">{description}</p>
+    <CommunityHeader
+      name={name}
+      description={description}
+      logo={logo}
+      website={website}
+      socials={socials}
+    />
 
-          <div class="community-links">
-            {
-              website && (
-                <a
-                  href={website}
-                  class="community-website-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Visitar web
-                </a>
-              )
-            }
+    <CommunityMetadata
+      technologies={technologies}
+      meetingFrequency={meetingFrequency}
+    />
 
-            {
-              socials && socials.length > 0 && (
-                <div class="community-socials">
-                  {socials.map(social => (
-                    <a
-                      href={social.url}
-                      class={`social-link ${social.name.toLowerCase()}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${social.name} de ${name}`}
-                    >
-                      {social.name}
-                    </a>
-                  ))}
-                </div>
-              )
-            }
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="community-metadata">
-      {
-        technologies && technologies.length > 0 && (
-          <div class="community-tech">
-            <h3>Tecnoloxías</h3>
-            <div class="tech-tags">
-              {technologies.map(tech => (
-                <span class="tag tech-tag">{tech}</span>
-              ))}
-            </div>
-          </div>
-        )
-      }
-      {
-        meetingFrequency && (
-          <div class="meeting-frequency">
-            <h3>Frecuencia</h3>
-            <p>{meetingFrequency}</p>
-          </div>
-        )
-      }
-    </div>
-    <div class="community-events">
-      <h2>Próximos eventos</h2>
-      {
-        upcomingEvents.length > 0 ? (
-          <div class="events-list">
-            {upcomingEvents.map(event => (
-              <EventCard
-                title={event.data.title}
-                description={event.data.description}
-                date={event.data.date}
-                location={event.data.location}
-                rsvpLink={event.data.rsvpLink}
-                tags={event.data.tags}
-                communityName={name || event.data.community}
-              />
-            ))}
-          </div>
-        ) : (
-          <p class="no-events">Non hai eventos próximos programados.</p>
-        )
-      }
-
-      <h2>Eventos pasados</h2>
-      {
-        pastEvents.length > 0 ? (
-          <div class="events-list past-events">
-            {pastEvents.map(event => (
-              <EventCard
-                title={event.data.title}
-                description={event.data.description}
-                date={event.data.date}
-                location={event.data.location}
-                tags={event.data.tags}
-                communityName={name || event.data.community}
-              />
-            ))}
-          </div>
-        ) : (
-          <p class="no-events">Non hai eventos pasados.</p>
-        )
-      }
-    </div>
+    <CommunityEvents
+      upcomingEvents={upcomingEvents}
+      pastEvents={pastEvents}
+      communityName={name}
+    />
   </div>
 </DetailLayout>

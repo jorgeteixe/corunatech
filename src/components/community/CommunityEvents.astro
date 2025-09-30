@@ -1,0 +1,25 @@
+---
+import type { CommunityEventsProps } from '../../types/community'
+import EventsSection from './EventsSection.astro'
+
+export interface Props extends CommunityEventsProps {}
+
+const { upcomingEvents, pastEvents, communityName } = Astro.props
+---
+
+<div class="community-events">
+  <EventsSection
+    title="Próximos eventos"
+    events={upcomingEvents}
+    emptyMessage="Non hai eventos próximos programados."
+    communityName={communityName}
+  />
+
+  <EventsSection
+    title="Eventos pasados"
+    events={pastEvents}
+    emptyMessage="Non hai eventos pasados."
+    isPast={true}
+    communityName={communityName}
+  />
+</div>

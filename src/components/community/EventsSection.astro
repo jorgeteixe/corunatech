@@ -1,0 +1,39 @@
+---
+import type { CommunityEventSection } from '../../types/community'
+import EventCard from '../eventCard/EventCard.astro'
+
+export interface Props extends CommunityEventSection {
+  communityName: string
+}
+
+const {
+  title,
+  events,
+  emptyMessage,
+  isPast = false,
+  communityName
+} = Astro.props
+---
+
+<div class="events-section">
+  <h2>{title}</h2>
+  {
+    events.length > 0 ? (
+      <div class:list={['events-list', { 'past-events': isPast }]}>
+        {events.map(event => (
+          <EventCard
+            title={event.data.title}
+            description={event.data.description}
+            date={event.data.date}
+            location={event.data.location}
+            rsvpLink={isPast ? undefined : event.data.rsvpLink}
+            tags={event.data.tags}
+            communityName={communityName}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="no-events">{emptyMessage}</p>
+    )
+  }
+</div>
