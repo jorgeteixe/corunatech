@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string
+  communityName: string
+}
+
+const { title, communityName } = Astro.props
+---
+
+<div class="event-card-header">
+  <div>
+    <h3 class="event-card-title">{title}</h3>
+    <p class="event-card-community">{communityName}</p>
+  </div>
+</div>

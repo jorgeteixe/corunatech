@@ -1,0 +1,15 @@
+.theme-toggle {
+  padding: 0.5rem;
+  border-radius: var(--border-radius-full);
+  transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
+}
+
+.theme-toggle-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}

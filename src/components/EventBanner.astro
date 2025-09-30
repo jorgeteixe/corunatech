@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content'
+import '../styles/components/EventBanner.css'
+
+const events = await getCollection('events')
+const communities = await getCollection('communities')
+
+const communityMap = new Map(
+  communities.map(community => [community.id, community.data])
+)
+
+function isEventSoonOrToday(eventDate: Date) {
+  const today = new Date()
+  const tomorrow = new Date(today)
+  tomorrow.setDate(today.getDate() + 1)
+
+  const todayStr = today.toDateString()
+  const tomorrowStr = tomorrow.toDateString()
+  const eventStr = eventDate.toDateString()
+
+  return eventStr === todayStr || eventStr === tomorrowStr
+}
+
+function isEventInProgress(startDate: Date, endDate?: Date) {
+  const now = new Date()
+
+  if (!endDate) {
+    return startDate.toDateString() === now.toDateString()
+  }
+
+  return now >= startDate && now <= endDate
+}
+
+function formatEventTime(startDate: Date, endDate?: Date) {
+  const startTimeStr = startDate.toLocaleTimeString('es-ES', {
+    hour: '2-digit',
+    minute: '2-digit'
+  })
+
+  if (endDate) {
+    const endTimeStr = endDate.toLocaleTimeString('es-ES', {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+    return `${startTimeStr} - ${endTimeStr}`
+  }
+
+  return startTimeStr
+}
+
+const relevantEvents = events
+  .filter(event => {
+    const isToday = isEventSoonOrToday(event.data.date)
+    const inProgress = isEventInProgress(event.data.date, event.data.endDate)
+    return isToday || inProgress
+  })
+  .map(event => {
+    const community = communityMap.get(event.data.community)
+    return {
+      ...event.data,
+      communityName: community?.name || 'Comunidad',
+      isInProgress: isEventInProgress(event.data.date, event.data.endDate),
+      formattedTime: formatEventTime(event.data.date, event.data.endDate)
+    }
+  })
+---
+
+{
+  relevantEvents.length > 0 && (
+    <div class="event-banner">
+      <div class="event-banner-content">
+        {relevantEvents.map((event, index) => (
+          <div class="event-banner-item">
+            <span class="event-status">
+              {event.isInProgress ? '🔴 EN CURSO' : '⚡ MAÑANA'}
+            </span>
+            <span class="event-community">{event.communityName}</span>
+            <span class="event-separator">•</span>
+            <span class="event-title">{event.title}</span>
+            <span class="event-separator">•</span>
+            <span class="event-location">{event.location}</span>
+            <span class="event-separator">•</span>
+            <span class="event-time">{event.formattedTime}</span>
+            {index < relevantEvents.length - 1 && (
+              <span class="event-divider">|</span>
+            )}
+          </div>
+        ))}
+        {relevantEvents.map((event, index) => (
+          <div class="event-banner-item">
+            <span class="event-status">
+              {event.isInProgress ? '🔴 EN CURSO' : '⚡ MAÑANA'}
+            </span>
+            <span class="event-community">{event.communityName}</span>
+            <span class="event-separator">•</span>
+            <span class="event-title">{event.title}</span>
+            <span class="event-separator">•</span>
+            <span class="event-location">{event.location}</span>
+            <span class="event-separator">•</span>
+            <span class="event-time">{event.formattedTime}</span>
+            {index < relevantEvents.length - 1 && (
+              <span class="event-divider">|</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

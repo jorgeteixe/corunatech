@@ -1,0 +1,37 @@
+---
+import type { WeekEntry } from '../../types/calendar'
+import WeekDay from './WeekDay.astro'
+
+export interface Props {
+  allWeeks: WeekEntry[]
+  initialWeekIndex: number
+  buildCommunityHref: (community: string) => string
+}
+
+const { allWeeks, initialWeekIndex, buildCommunityHref } = Astro.props
+---
+
+<div class="calendar-week-view">
+  {
+    allWeeks.map((week, index) => (
+      <section
+        class:list={{
+          'calendar-week': true,
+          'calendar-week--active': index === initialWeekIndex
+        }}
+        data-calendar-week={week.key}
+        data-week-index={index}
+        data-week-label={week.label}
+        data-week-nav-label={week.navLabel}
+        aria-hidden={index === initialWeekIndex ? undefined : 'true'}
+        aria-label={week.label}
+      >
+        <div class="calendar-week-days">
+          {week.days.map(day => (
+            <WeekDay day={day} buildCommunityHref={buildCommunityHref} />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</div>

@@ -1,23 +1,29 @@
 ---
-import "../styles/global.css";
+import '../styles/global.css'
+import '../styles/layouts/BaseLayout.css'
+import Footer from '../components/Footer.astro'
+import EventBanner from '../components/EventBanner.astro'
+import ThemeScript from '../components/ThemeScript.astro'
+import { buildImageUrl, getDefaultImage } from '../utils/url-utils'
+import { FAVICON_PATHS } from '../utils/constants'
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
+  title?: string
+  description?: string
+  image?: string
 }
 
-const { title = "", description = "", image = "/meta.png" } = Astro.props;
+const { title = '', description = '', image = getDefaultImage() } = Astro.props
 
-const siteUrl = Astro.site?.toString();
-const imageUrl = `${siteUrl}${image}`;
+const siteUrl = Astro.site?.toString()
+const imageUrl = buildImageUrl(siteUrl, image)
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Sitemap Plugin Integration -->
@@ -27,21 +33,21 @@ const imageUrl = `${siteUrl}${image}`;
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/corunatech/apple-touch-icon.png"
+      href={FAVICON_PATHS.APPLE_TOUCH}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/corunatech/favicon-32x32.png"
+      href={FAVICON_PATHS.FAVICON_32}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/corunatech/favicon-16x16.png"
+      href={FAVICON_PATHS.FAVICON_16}
     />
-    <link rel="manifest" href="/corunatech/site.webmanifest" />
+    <link rel="manifest" href={FAVICON_PATHS.MANIFEST} />
 
     <!-- Meta Tags Generated with https://metatags.io -->
     <!-- Primary Meta Tags -->
@@ -62,8 +68,13 @@ const imageUrl = `${siteUrl}${image}`;
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={imageUrl} />
+
+    <ThemeScript />
   </head>
-  <body class="h-full">
+  <body>
+    <EventBanner />
+    <slot name="header" />
     <slot />
+    <Footer />
   </body>
 </html>

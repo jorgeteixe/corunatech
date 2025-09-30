@@ -1,0 +1,46 @@
+---
+import type { MonthData } from '../../types/calendar'
+import { getWeekdayLabels } from '../../utils/calendar-utils'
+import CalendarDay from './CalendarDay.astro'
+
+export interface Props {
+  months: MonthData[]
+  initialMonthIndex: number
+}
+
+const { months, initialMonthIndex } = Astro.props
+
+const weekdayLabels = getWeekdayLabels()
+---
+
+<div class="calendar-months">
+  {
+    months.map((month, index) => (
+      <div
+        class:list={{
+          'calendar-month': true,
+          'calendar-month--active': index === initialMonthIndex
+        }}
+        data-calendar-month={month.key}
+        data-calendar-index={index}
+        data-label={month.label}
+        data-nav-label={month.navLabel}
+        aria-hidden={index === initialMonthIndex ? undefined : 'true'}
+      >
+        <div class="calendar-month-grid">
+          <div class="calendar-grid" role="grid">
+            {weekdayLabels.map(label => (
+              <div class="calendar-weekday" role="columnheader">
+                {label}
+              </div>
+            ))}
+
+            {month.days.map(day => (
+              <CalendarDay day={day} />
+            ))}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

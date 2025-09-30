@@ -1,0 +1,136 @@
+/* Estilo para el seguidor del cursor que muestra "click" */
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(0%, 15px); /* Desplazado hacia abajo */
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  pointer-events: none;
+  z-index: 10000;
+  white-space: nowrap;
+  transition: transform 0.1s ease-out;
+  text-transform: uppercase; /* Texto en mayúsculas */
+}
+
+/* Contenedor principal del sticker */
+.click-sticker {
+  position: absolute; /* Se posiciona respecto al body para que se mueva con el scroll */
+  width: 160px; /* 60% más grande que los 100px originales */
+  height: 160px; /* 60% más grande que los 100px originales */
+  z-index: 9990; /* Aseguramos que esté por encima del contenido pero debajo del cursor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Borde blanco exterior */
+  padding: 8px;
+  /* Sombra sutil */
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.15));
+  overflow: hidden; /* Cortamos la imagen para que no sobresalga */
+  box-sizing: border-box; /* Para que el padding no afecte al tamaño total */
+}
+
+/* Imagen dentro del sticker */
+.sticker-image-content {
+  width: 65%; /* Más pequeño para que no sobresalga */
+  height: 65%; /* Más pequeño para que no sobresalga */
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Formas --- */
+/* Formas aplicadas con border-radius */
+.shape-circle {
+  border-radius: 50%;
+  background-color: white;
+}
+.shape-rounded {
+  border-radius: 15px;
+  background-color: white;
+}
+.shape-pill {
+  border-radius: 50px;
+  background-color: white;
+}
+.shape-squircle {
+  border-radius: 35%;
+  background-color: white;
+}
+.shape-blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  background-color: white;
+}
+.shape-arch {
+  border-radius: 50% 50% 0 0;
+  background-color: white;
+}
+.shape-shield {
+  border-radius: 40% 40% 0 0 / 50% 50% 0 0;
+  background-color: white;
+}
+.shape-ticket {
+  border-radius: 15px;
+  background-color: white;
+}
+
+/* --- Colores de la paleta --- */
+/* Usamos las variables base definidas en global.css */
+
+/* --- Bordes --- */
+/* El borde se aplica al contenedor */
+.click-sticker.border-simple,
+.click-sticker.border-double,
+.click-sticker.border-dotted,
+.click-sticker.border-dashed {
+  box-shadow: 0 0 0 6px white,
+    /* Borde blanco exterior más grueso */ 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra para efecto 3D */
+  overflow: hidden; /* Cortamos el contenido que exceda los límites */
+}
+
+/* Bordes más complejos - sólo definimos estilo y ancho, no color */
+.border-simple {
+  border-width: 4px;
+  border-style: solid;
+  box-shadow: 0 0 0 6px white,
+    /* Borde blanco exterior */ 0 0 0 1px currentColor inset; /* Borde interior fino */
+}
+.border-double {
+  border-width: 5px;
+  border-style: double;
+  box-shadow: 0 0 0 6px white,
+    /* Borde blanco exterior */ 0 0 0 8px rgba(255, 255, 255, 0.8) inset; /* Halo interior */
+}
+.border-dotted {
+  border-width: 4px;
+  border-style: dotted;
+  box-shadow: 0 0 0 6px white,
+    /* Borde blanco exterior */ 0 0 10px rgba(0, 0, 0, 0.1) inset; /* Sombra interna */
+}
+.border-dashed {
+  border-width: 4px;
+  border-style: dashed;
+  box-shadow: 0 0 0 6px white,
+    /* Borde blanco exterior */ 0 0 0 2px rgba(255, 255, 255, 0.5) inset; /* Borde interior claro */
+}
+
+/* Aseguramos que los colores se apliquen con mayor especificidad */
+.click-sticker.border-color-1 {
+  border-color: var(--black) !important;
+}
+.click-sticker.border-color-2 {
+  border-color: var(--dark-gray) !important;
+}
+.click-sticker.border-color-3 {
+  border-color: var(--light-gray) !important;
+}
+.click-sticker.border-color-4 {
+  border-color: var(--dark-gray) !important;
+}
+.click-sticker.border-color-5 {
+  border-color: var(--black) !important;
+}

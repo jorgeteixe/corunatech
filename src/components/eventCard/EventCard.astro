@@ -1,0 +1,54 @@
+---
+import '../../styles/components/EventCard.css'
+import { isDateInFuture } from '../../utils/date-utils'
+import EventCardHeader from './EventCardHeader.astro'
+import EventCardDetails from './EventCardDetails.astro'
+import EventCardTags from './EventCardTags.astro'
+import EventCardFooter from './EventCardFooter.astro'
+
+interface Props {
+  title: string
+  description: string
+  date: Date
+  duration?: string
+  location?: string
+  rsvpLink?: string
+  tags: string[]
+  communityName: string
+}
+
+const {
+  title,
+  description,
+  date,
+  duration,
+  location,
+  rsvpLink,
+  tags,
+  communityName
+} = Astro.props
+
+const shouldShowRsvpButton = rsvpLink && isDateInFuture(date)
+---
+
+<div class="event-card">
+  <div class="event-card-content">
+    <div class="event-card-top">
+      <EventCardHeader title={title} communityName={communityName} />
+      <EventCardDetails date={date} duration={duration} location={location} />
+    </div>
+
+    <div class="event-card-middle">
+      <p class="event-card-description">{description}</p>
+    </div>
+
+    <div class="event-card-bottom">
+      <EventCardTags tags={tags} />
+      {
+        shouldShowRsvpButton && rsvpLink && (
+          <EventCardFooter rsvpLink={rsvpLink} />
+        )
+      }
+    </div>
+  </div>
+</div>

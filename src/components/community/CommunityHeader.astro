@@ -1,0 +1,52 @@
+---
+import type { CommunityHeaderProps } from '../../types/community'
+
+export interface Props extends CommunityHeaderProps {}
+
+const { name, description, logo, website, socials } = Astro.props
+---
+
+<div class="community-header">
+  <div class="community-header-content">
+    <div class="community-logo">
+      {logo && <img src={logo} alt={`Logo de ${name}`} />}
+    </div>
+    <div class="community-info">
+      <h1 class="community-name">{name}</h1>
+      <p class="community-description">{description}</p>
+
+      <div class="community-links">
+        {
+          website && (
+            <a
+              href={website}
+              class="community-website-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visitar web
+            </a>
+          )
+        }
+
+        {
+          socials && socials.length > 0 && (
+            <div class="community-socials">
+              {socials.map(social => (
+                <a
+                  href={social.url}
+                  class={`social-link ${social.name.toLowerCase()}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${social.name} de ${name}`}
+                >
+                  {social.name}
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</div>

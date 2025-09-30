@@ -1,0 +1,21 @@
+---
+import corunaTechLogo from '../assets/logo.svg?raw'
+import ThemeToggle from './ThemeToggle.astro'
+import '../styles/components/HeaderDetail.css'
+---
+
+<header class="header-detail">
+  <a
+    href="/corunatech"
+    aria-current="page"
+    aria-label="home"
+    class="header-detail-logo-link"
+  >
+    <div class="header-detail-logo" set:html={corunaTechLogo} />
+  </a>
+  <div class="header-detail-right">
+    <div class="header-detail-theme-toggle">
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

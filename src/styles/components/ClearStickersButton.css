@@ -1,0 +1,16 @@
+.clear-stickers-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--border-radius-full);
+  color: var(--text-body);
+  transition: background-color 0.3s;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.clear-stickers-button:hover {
+  background-color: var(--bg-dark);
+  color: var(--text-inverse);
+}

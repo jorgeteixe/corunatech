@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content'
+import '../styles/components/CursorFollower.css'
+
+const communities = await getCollection('communities')
+const communityLogos = communities.map(community => community.data.logo)
+---
+
+<div id="cursor-follower" class="cursor-follower">
+  <span class="cursor-text">click</span>
+</div>
+
+<script src="../scripts/cursor-follower.ts"></script>
+
+<script define:vars={{ communityLogos }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.initializeCursorFollower) {
+      window.initializeCursorFollower(communityLogos)
+    }
+  })
+</script>

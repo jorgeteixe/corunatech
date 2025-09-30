@@ -1,0 +1,20 @@
+---
+import { THEME_CONFIG } from '../utils/constants'
+---
+
+<script is:inline define:vars={{ THEME_CONFIG }}>
+  const theme = (() => {
+    if (
+      typeof localStorage !== 'undefined' &&
+      localStorage.getItem(THEME_CONFIG.STORAGE_KEY)
+    ) {
+      return localStorage.getItem(THEME_CONFIG.STORAGE_KEY)
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return THEME_CONFIG.DARK_THEME
+    }
+    return THEME_CONFIG.DEFAULT_THEME
+  })()
+
+  document.documentElement.setAttribute(THEME_CONFIG.ATTRIBUTE_NAME, theme)
+</script>

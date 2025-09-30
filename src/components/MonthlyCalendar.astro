@@ -1,0 +1,62 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import '../styles/components/MonthlyCalendar.css'
+import type { CalendarProps } from '../types/calendar'
+import {
+  buildCommunityHref,
+  calculateDateRange,
+  generateMonthKeys
+} from '../utils/calendar-utils'
+import { createCalendarData } from '../utils/calendar-data'
+import CalendarHeader from './calendar/CalendarHeader.astro'
+import MonthView from './calendar/MonthView.astro'
+import WeekView from './calendar/WeekView.astro'
+
+export interface Props extends CalendarProps {}
+
+const { events, communityNames } = Astro.props
+
+const baseUrl = import.meta.env.BASE_URL ?? '/'
+const now = new Date()
+
+const { rangeStart, rangeEnd } = calculateDateRange(events, now)
+const monthKeys = generateMonthKeys(rangeStart, rangeEnd)
+
+const { months, allWeeks, initialMonthIndex, initialWeekIndex } =
+  createCalendarData(events, communityNames, now, monthKeys)
+
+const initialLabel =
+  months[initialMonthIndex]?.navLabel ??
+  allWeeks[initialWeekIndex]?.navLabel ??
+  ''
+
+const buildHref = (community: string) => buildCommunityHref(community, baseUrl)
+---
+
+<section
+  class="calendar-section"
+  aria-label="Monthly events calendar"
+  data-calendar-root
+  data-initial-month-index={initialMonthIndex}
+  data-initial-week-index={initialWeekIndex}
+>
+  <CalendarHeader initialLabel={initialLabel} />
+
+  <MonthView months={months} initialMonthIndex={initialMonthIndex} />
+
+  <WeekView
+    allWeeks={allWeeks}
+    initialWeekIndex={initialWeekIndex}
+    buildCommunityHref={buildHref}
+  />
+</section>
+
+<script src="../scripts/calendar-navigation.ts"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.initializeCalendarNavigation) {
+      window.initializeCalendarNavigation()
+    }
+  })
+</script>

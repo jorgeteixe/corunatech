@@ -1,0 +1,64 @@
+.hero-section {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-container {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-size-title);
+  color: var(--text-title);
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: var(--text-size-hero);
+  }
+}
+
+.hero-scroll-container {
+  position: absolute;
+  bottom: 4rem;
+  left: 0;
+  right: 0;
+}
+
+.hero-scroll-link {
+  margin: 0 auto;
+  display: inline-block;
+  animation: bounce 1s infinite;
+  border-radius: var(--border-radius-full);
+  background-color: var(--bg-dark);
+  padding: 1rem;
+  color: var(--text-inverse);
+  position: relative;
+  z-index: 10001; /* Asegurar que esté por encima */
+}
+
+.hero-scroll-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}

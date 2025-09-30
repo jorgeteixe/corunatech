@@ -1,0 +1,27 @@
+---
+import corunaTechLogo from '../assets/logo.svg?raw'
+import ThemeToggle from './ThemeToggle.astro'
+import ClearStickersButton from './ClearStickersButton.astro'
+import '../styles/components/Header.css'
+---
+
+<header class="header">
+  <div class="header-top">
+    <nav class="header-nav">
+      <a href="#comunidades" class="header-nav-link"> Comunidades </a>
+      <a href="#eventos" class="header-nav-link"> Eventos </a>
+    </nav>
+    <div class="header-right">
+      <ThemeToggle />
+      <ClearStickersButton />
+    </div>
+  </div>
+  <a
+    href="/corunatech"
+    aria-current="page"
+    aria-label="home"
+    class="header-logo-link"
+  >
+    <div class="header-logo" set:html={corunaTechLogo} />
+  </a>
+</header>
