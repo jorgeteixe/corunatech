@@ -3,7 +3,9 @@ import '../styles/global.css'
 import '../styles/layouts/BaseLayout.css'
 import Footer from '../components/Footer.astro'
 import EventBanner from '../components/EventBanner.astro'
+import ThemeScript from '../components/layout/ThemeScript.astro'
 import { buildImageUrl, getDefaultImage } from '../utils/url-utils'
+import { FAVICON_PATHS } from '../utils/constants'
 
 interface Props {
   title?: string
@@ -31,21 +33,21 @@ const imageUrl = buildImageUrl(siteUrl, image)
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/corunatech/apple-touch-icon.png"
+      href={FAVICON_PATHS.APPLE_TOUCH}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/corunatech/favicon-32x32.png"
+      href={FAVICON_PATHS.FAVICON_32}
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/corunatech/favicon-16x16.png"
+      href={FAVICON_PATHS.FAVICON_16}
     />
-    <link rel="manifest" href="/corunatech/site.webmanifest" />
+    <link rel="manifest" href={FAVICON_PATHS.MANIFEST} />
 
     <!-- Meta Tags Generated with https://metatags.io -->
     <!-- Primary Meta Tags -->
@@ -67,22 +69,7 @@ const imageUrl = buildImageUrl(siteUrl, image)
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={imageUrl} />
 
-    <script is:inline>
-      const theme = (() => {
-        if (
-          typeof localStorage !== 'undefined' &&
-          localStorage.getItem('theme')
-        ) {
-          return localStorage.getItem('theme')
-        }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark'
-        }
-        return 'light'
-      })()
-
-      document.documentElement.setAttribute('data-theme', theme)
-    </script>
+    <ThemeScript />
   </head>
   <body>
     <EventBanner />
